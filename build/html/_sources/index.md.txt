@@ -1,0 +1,16 @@
+# Automatización de procesos con datos geoespaciales en Python
+
+```{toctree}
+:maxdepth: 2
+:caption: Contenidos del curso
+
+introduccion
+modulo1
+modulo2
+modulo3
+modulo4
+modulo5
+modulo6
+modulo7
+resultados
+```
