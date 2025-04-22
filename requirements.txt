@@ -2,3 +2,8 @@ sphinx
 myst-parser
 nbsphinx
 sphinx-rtd-theme
+bokeh
+geopandas
+shapely
+folium
+pandas

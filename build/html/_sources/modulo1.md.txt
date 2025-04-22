@@ -1,3 +1,3 @@
 # Modulo1
 
-Contenido aquí...
+# Sesión 1: Introducción a Python y Google Colab
