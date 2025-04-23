@@ -1,7 +1,7 @@
 sphinx
 myst-parser
 nbsphinx
-sphinx-rtd-theme
+sphinx-book-theme
 bokeh
 geopandas
 shapely
