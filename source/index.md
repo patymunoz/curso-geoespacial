@@ -49,12 +49,10 @@ A continuación te presentamos un ejemplo de lo que podrás hacer al finalizar e
 
 Este es un mapa interactivo que muestra la tasa de crecimiento promedio anual, por municipio en el estado de Jalisco para el periodo de 2010 a 2020.
 
-````{raw} html
-
-### Mapa interactivo de crecimiento de vivienda en Jalisco (2010–2020)
+### Mapa interactivo de tasa de crecimiento promedio anual en Jalisco (2010–2020)
 
 ```{raw} html
 <iframe src="_static/mapa_jalisco_clasificado.html" width="100%" height="600px" style="border:none;"></iframe>
-````
+```
 
 **Fuente de datos:** [Visualizador-GEMA](https://gema.conahcyt.mx/).
