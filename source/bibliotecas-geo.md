@@ -29,9 +29,7 @@ Cuando empieces a usarlas en tus propios proyectos, es recomendable consultar su
 - **[Contextily](https://github.com/darribas/contextily):** Añade mapas base a visualizaciones estáticas.
 - **[GeoViews](http://geo.holoviews.org/index.html):** Visualización interactiva de datos geoespaciales.
 - **[Geoplot](https://github.com/ResidentMario/geoplot):** Visualización estadística de datos espaciales.
-- **[Dash](https://plot.ly/products/dash/):** Framework para construir apps analíticas web.
 - **[OSMnx](https://github.com/gboeing/osmnx):** Descarga y análisis de redes viales desde OpenStreetMap.
-- **[NetworkX](https://networkx.github.io/documentation/networkx-1.10/overview.html):** Análisis de redes y rutas (algoritmos como Dijkstra o A\*).
 - **[Cartopy](http://scitools.org.uk/cartopy/docs/latest/index.html):** Crear mapas para análisis de datos.
 - **[scipy.spatial](http://docs.scipy.org/doc/scipy/reference/spatial.html):** Algoritmos espaciales y estructuras de datos.
 - **[Rtree](http://toblerity.org/rtree/):** Indexación espacial para búsquedas rápidas.
@@ -40,4 +38,8 @@ Cuando empieces a usarlas en tus propios proyectos, es recomendable consultar su
 
 ---
 
-Este listado no es exhaustivo, pero cubre gran parte de las herramientas que encontrarás en proyectos de análisis territorial, sistemas de información geográfica (SIG), planificación urbana, medio ambiente, movilidad y más.
+Este listado no es exhaustivo, pero cubre gran parte de las herramientas que encontrarás en proyectos de análisis de datos geoespaciales.
+
+```{admonition} ¡Instala tu ambiente virtual en tu computadora!
+Consulta las **instrucciones para instalar estos módulos** en la sección [Genera tu ambiente virtual local](genera-ambiente-virtual.md).
+```
