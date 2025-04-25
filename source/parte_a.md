@@ -216,7 +216,7 @@ Las listas son mutables, lo que significa que puedes agregar, eliminar o modific
 - Slice de listas
 - Operadores de listas (+, \*)
 
-## Tuplas
+### Tuplas
 
 Las tuplas (`tuple`) son colecciones ordenadas e inmutables de elementos. Se definen utilizando paréntesis (`()`). Al igual que las listas, pueden contener elementos de diferentes tipos.
 
@@ -226,7 +226,7 @@ mi_tupla = (1, 2, 3, "Hola", True)
 
 Las tuplas son inmutables, lo que significa que no se pueden modificar una vez creadas. Sin embargo, puedes acceder a sus elementos de la misma manera que lo harías con una lista.
 
-## Diccionarios
+### Diccionarios
 
 Los diccionarios (`dict`) son colecciones desordenadas y mutables de pares clave-valor. Se definen utilizando llaves (`{}`) y los pares clave-valor se separan con comas. Las claves deben ser únicas y pueden ser de cualquier tipo inmutable, como cadenas, números o tuplas.
 
@@ -243,7 +243,7 @@ mi_diccionario = {
 - Agregar elementos a un diccionario
 - Eliminar elementos de un diccionario
 
-## Sets
+### Sets
 
 Los conjuntos (`set`) son colecciones desordenadas y mutables de elementos únicos. Se definen utilizando llaves (`{}`) o la función `set()`. Los conjuntos son útiles para realizar operaciones matemáticas como uniones, intersecciones y diferencias.
 

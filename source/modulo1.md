@@ -2,5 +2,6 @@
 
 ## Contenidos de esta sesión
 
-- [Parte A: Introducción a colecciones](parte_a.md)
-- [Parte B: Mutaciones y copias](parte_b.md)
+- [Parte A: Básicos de Python](parte_a.md)
+
+- [Parte B: Condicionantes y for loops](parte_b.md)
