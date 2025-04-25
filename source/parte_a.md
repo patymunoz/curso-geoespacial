@@ -101,7 +101,7 @@ Los tipos de datos son una parte fundamental de cualquier lenguaje de programaci
 
 Recuperado de: Dorman, M. (2025). _Python Basis._ En _Spatial Data Programming with Python._
 
-### (a) Int y (b) float
+### Int y float
 
 Los tipos `int` y `float` son los tipos numéricos en Python. Los números enteros (`int`) son números sin decimales, mientras que los números de punto flotante (`float`) son números con decimales.
 
@@ -159,7 +159,7 @@ x
 Python también permite la asignación decremental (`-=`), la asignación multiplicativa (`*=`) y la asignación de división (`/=`).
 ```
 
-### (c) Booleanos
+### Booleanos
 
 Los valores booleanos son un tipo de dato que solo puede tener dos valores: `True` o `False`. Estos valores son útiles para realizar comparaciones y tomar decisiones en el código.
 
