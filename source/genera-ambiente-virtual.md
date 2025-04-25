@@ -74,7 +74,7 @@ import folium
 import osmnx as ox
 ```
 
-Si no hay errores, ¡estás listo para comenzar! 🚀
+Si no hay errores, ¡estás listx para comenzar! 🚀
 
 ---
 
@@ -96,4 +96,4 @@ Te evitarás muchas frustraciones técnicas, especialmente al trabajar con archi
 Mantén tu ambiente virtual activo solo mientras trabajas en tu proyecto. Usa `conda deactivate` para salir cuando termines.
 ```
 
-Si necesitas más documentarte más, consulta la [documentación oficial de Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).
+Si necesitas documentarte más, consulta la [documentación oficial de Conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html).

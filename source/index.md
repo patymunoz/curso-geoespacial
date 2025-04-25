@@ -26,8 +26,11 @@ El curso se compone de siete módulos progresivos que abordan desde los fundamen
 
 bibliotecas-geo
 genera-ambiente-virtual
+recursos
 
 introduccion
+metas-aprendizaje
+
 modulo1
 modulo2
 modulo3
