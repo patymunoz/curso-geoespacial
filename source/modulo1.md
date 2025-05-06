@@ -2,6 +2,14 @@
 
 En esta sesión trabajaremos con los conceptos fundamentales de Python, necesarios para desarrollar programas eficientes y estructurados.
 
+## Introducción
+
+En esta primera sesión nos adentraremos en los conceptos fundamentales de Python, indispensables para todo programador. Abordaremos temas clave como variables, tipos de datos, estructuras de control y funciones. Estos conocimientos forman la base para escribir programas eficientes, legibles y bien estructurados, y nos prepararán para desarrollar soluciones más complejas en el futuro.
+
+### ¿Qué es Python?
+
+Python es un lenguaje de programación versátil y fácil de aprender, ampliamente utilizado en el análisis geoespacial. Gracias a su rica colección de bibliotecas como `GeoPandas`,` Shapely`, `Rasterio` y `Folium`, permite procesar, analizar y visualizar datos espaciales. Su uso se ha convertido en un estándar en proyectos de **SIG (Sistemas de Información Geográfica)** tanto académicos como profesionales.
+
 ## Contenidos de esta sesión
 
 - [Parte A: Básicos de Python](parte_a.md)  

@@ -46,6 +46,8 @@ Por ejemplo:
 | `'MultiPolygon'`       | `MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)), ((20 35, 10 30, 10 10, 30 5, 45 20, 20 35), (30 20, 20 15, 20 25, 30 20)))` |
 | `'GeometryCollection'` | `GEOMETRYCOLLECTION (POINT (40 10), LINESTRING (10 10, 20 20, 10 40), POLYGON ((40 40, 20 45, 45 30, 40 40)))`             |
 
+Recuperado de: Wikipedia. (2025). _Well-known text representation of geometry objects._ En [Wikipedia](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry).
+
 > 🛈 **WKT es ampliamente utilizado** en bibliotecas como `shapely` y bases de datos espaciales como PostGIS, pero **no es la única forma** de representar geometrías.
 
 ### Otros formatos comunes para representar geometrías:
