@@ -10,10 +10,6 @@ Python es un lenguaje de programación, interpretado y de propósito general. Es
 
 ## Variables y asignación
 
-<div style="text-align: center;">
-  <img src="images/variable.png" width="60" height="60" alt="Variable" />
-</div>
-
 Los conceptos más básicos son los de _variables_ y _asignación_. Asignamos valores a variables para guardar resultados intermedios en la memoria de la computadora y continuar procesándolos de forma incremental a lo largo del _script_. Veremos que las variables pueden almacenar valores de cualquier nivel de complejidad, desde números o cadenas simples, hasta arreglos, tablas, capas vectoriales o rásters.
 
 La asignación en Python se realiza con el operador `=`:

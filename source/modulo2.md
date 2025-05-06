@@ -15,6 +15,10 @@ En los próximos tres capítulos, abordaremos los fundamentos de trabajar con el
 
 Las _geometrías individuales_ dentro de una capa vectorial se almacenan como geometrías de `shapely`. Así que es importante familiarizarse con este paquete antes de pasar a trabajar con _capas vectoriales_ completas.
 
+!['Tipos de geometrías'](images/simple_feature_types.svg)
+
+Recuperado de: Dorman, M. (2025). _Geometries (Shapely)._ En _Spatial Data Programming with Python._
+
 ```{admonition} ¿Qué es una geometría individual?
 
 Una **geometría individual** es una representación única de una forma geométrica, definida según los [tipos establecidos en la especificación *Simple Features*](https://en.wikipedia.org/wiki/Simple_Features). Esta especificación contempla al menos 17 tipos de geometrías, aunque en la práctica se utilizan comúnmente solo 7. Estas son:
@@ -60,3 +64,13 @@ Cada uno de estos formatos tiene ventajas según el contexto de uso: análisis, 
 `shapely` es una interfaz de Python para la biblioteca de geometría `GEOS` (Geometry Engine - Open Source), que es una biblioteca de C++. `GEOS` es la biblioteca de geometría subyacente utilizada por muchos sistemas de información geográfica (SIG) de código abierto y bibliotecas de análisis espacial, como `PostGIS`, `GDAL`, `GeoPandas`, `QGIS`, entre otros.
 
 La [documentación](https://shapely.readthedocs.io/en/stable/manual.html) de `shapely` es muy completa y contiene ejemplos de uso.
+
+## Contenidos de esta sesión
+
+En esta sesión estaremos trabajando con este cuaderno de trabajo:
+
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion2.ipynb)
+
+Al finalizar el taller, tienes disponible un cuaderno para practicar lo aprendido:
+
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion2_practica.ipynb)
