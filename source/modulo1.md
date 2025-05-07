@@ -22,4 +22,6 @@ Python es un lenguaje de programación versátil y fácil de aprender, ampliamen
 - [Parte B: Condicionantes y for loops](parte_b.md)  
   Uso de estructuras condicionales (`if`, `else`, `elif`) y ciclos `for` para controlar el flujo de los programas.
 
-  [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion1_parteb.ipynb)
+Al finalizar el taller, tienes disponible un cuaderno para practicar lo aprendido:
+
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion1_practica.ipynb)
