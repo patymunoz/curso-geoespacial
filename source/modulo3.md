@@ -32,6 +32,16 @@ Los datos se encuentran en formato `shapefile` y están disponibles para su desc
 
 ## Contenidos de esta sesión
 
-En esta sesión estaremos trabajando con este cuaderno de trabajo:
+En esta sesión estaremos trabajando con este cuaderno para trabajar con _GeoPandas_:
 
 [![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion3.ipynb)
+
+También veremos algunos ejemplos para trabajar el **Sistema de Coordenadas de Referencia (CRS)**
+
+![Mapa de transición animado](_static/map.gif)
+
+Créditos de la visualización: [@jasondavies](https://www.jasondavies.com/)
+
+En este cuaderno trabajaremos con el _CRS_ de datos geoespaciales:
+
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion3-1.ipynb)
