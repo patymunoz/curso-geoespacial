@@ -69,7 +69,7 @@ Para este ejercicio utilizaremos un conjunto de datos de países del mundo en fo
 
 También utilizaremos un conjunto de datos del Instituto Nacional de Estadística y Geografía (INEGI) de México, que contiene información geoespacial sobre el [Marco Geoestadístico de México](https://www.inegi.org.mx/temas/mg/). Este conjunto de datos está disponible en formato `shapefile` y contiene información sobre los límites políticos y geográficos de México.
 
-[![Descargar datos](https://img.shields.io/badge/descargar-datos-blue)](../source/data/mg_2024_integrado.zip)
+[![Descargar datos](https://img.shields.io/badge/descargar-datos-purple)](https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=794551132173)
 
 ## Contenidos de esta sesión
 
