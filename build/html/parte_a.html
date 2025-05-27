@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fundamentos de Python &#8212; Manejo de datos geoespaciales en Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'parte_a';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/codigo.png" class="logo__image only-light" alt="Manejo de datos geoespaciales en Python - Home"/>
+    <script>document.write(`<img src="_static/codigo.png" class="logo__image only-dark" alt="Manejo de datos geoespaciales en Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Manejo de datos geoespaciales en Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos del curso</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliotecas-geo.html">🔹 Bibliotecas útiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genera-ambiente-virtual.html">🔹 Ambiente virtual local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursos.html">🔹 Recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">🔹 Introducción al curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metas-aprendizaje.html">🔹 Metas de aprendizaje</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo1.html">🔹 Sesión 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo2.html">🔹 Sesión 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo3.html">🔹 Sesión 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo4.html">🔹 Sesión 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo5.html">🔹 Sesión 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo6.html">🔹 Sesión 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo7.html">🔹 Sesión 7</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/patymunoz/curso-geoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/parte_a.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fundamentos de Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-y-asignacion">Variables y asignación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones">Funciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos">Tipos de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-y-float">Int y float</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-aritmeticos">Operadores aritméticos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#asignacion-incremental">Asignación incremental</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#booleanos">Booleanos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-logicos">Operadores lógicos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-comparacion">Operadores de comparación</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none">None</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cadenas-de-texto-strings">Cádenas de texto <em>(strings)</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">Tuplas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios">Diccionarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="fundamentos-de-python">
+<h1>Fundamentos de Python<a class="headerlink" href="#fundamentos-de-python" title="Link to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<p>En este capítulo, introducimos los conceptos básicos, operadores y estructuras de datos en Python.</p>
+<p>Python es un lenguaje de programación, interpretado y de propósito general. Es conocido por su simplicidad y legibilidad. Python es ampliamente utilizado en diversas áreas, incluyendo desarrollo web, análisis de datos, inteligencia artificial y automatización de tareas.</p>
+<p><img alt="Lenguajes de programación para análisis y ciencia de datos." src="_images/p-languages.png" /></p>
+</section>
+<section id="variables-y-asignacion">
+<h2>Variables y asignación<a class="headerlink" href="#variables-y-asignacion" title="Link to this heading">#</a></h2>
+<p>Los conceptos más básicos son los de <em>variables</em> y <em>asignación</em>. Asignamos valores a variables para guardar resultados intermedios en la memoria de la computadora y continuar procesándolos de forma incremental a lo largo del <em>script</em>. Veremos que las variables pueden almacenar valores de cualquier nivel de complejidad, desde números o cadenas simples, hasta arreglos, tablas, capas vectoriales o rásters.</p>
+<p>La asignación en Python se realiza con el operador <code class="docutils literal notranslate"><span class="pre">=</span></code>:</p>
+<ul class="simple">
+<li><p>A la izquierda del <code class="docutils literal notranslate"><span class="pre">=</span></code> se especifica el <em>nombre</em> de la variable</p></li>
+<li><p>A la derecha del <code class="docutils literal notranslate"><span class="pre">=</span></code> se indica el <em>valor</em> que se quiere asignar</p></li>
+</ul>
+<p>Por ejemplo, la siguiente línea asigna el valor numérico <code class="docutils literal notranslate"><span class="pre">3</span></code> a una variable llamada <code class="docutils literal notranslate"><span class="pre">x</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p>Los nombres de variables pueden componerse de letras minúsculas (<code class="docutils literal notranslate"><span class="pre">[a-z]</span></code>), mayúsculas (<code class="docutils literal notranslate"><span class="pre">[A-Z]</span></code>), dígitos (<code class="docutils literal notranslate"><span class="pre">[0-9]</span></code>) y guiones bajos (<code class="docutils literal notranslate"><span class="pre">_</span></code>).<br />
+También ten en cuenta que los nombres de variables <strong>distinguen entre mayúsculas y minúsculas</strong>: por ejemplo, <code class="docutils literal notranslate"><span class="pre">g</span></code> y <code class="docutils literal notranslate"><span class="pre">G</span></code> son dos variables distintas.</p>
+<p>Ahora podemos acceder al valor asignado a <code class="docutils literal notranslate"><span class="pre">x</span></code> en cualquier expresión posterior del script:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>3
+</pre></div>
+</div>
+<p>Asignar otro valor a una variable ya definida <strong>reemplaza</strong> su contenido anterior.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>7
+</pre></div>
+</div>
+<p>Intentar acceder a una variable que <strong>no ha sido definida</strong> es un error común.<br />
+Por ejemplo, si no hemos definido una variable llamada <code class="docutils literal notranslate"><span class="pre">z</span></code> en ninguna parte del script, entonces al usar <code class="docutils literal notranslate"><span class="pre">z</span></code> se lanza un error:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># z  ## Generará un error</span>
+</pre></div>
+</div>
+<p>Como puedes ver, las variables son nombres simbólicos que almacenan valores en memoria.</p>
+<p>Podemos verificar si una variable existe (es decir, si está definida) usando la palabra clave <code class="docutils literal notranslate"><span class="pre">in</span></code> en el diccionario que devuelve la función incorporada <code class="docutils literal notranslate"><span class="pre">globals()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;x&#39;</span> <span class="ow">in</span> <span class="nb">globals</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>También existe una función llamada <code class="docutils literal notranslate"><span class="pre">locals()</span></code> que devuelve las variables definidas dentro de un ámbito local.</p>
+<p>Estas funciones son especialmente útiles al trabajar dentro de <code class="docutils literal notranslate"><span class="pre">funciones</span></code>.</p>
+</section>
+<section id="funciones">
+<h2>Funciones<a class="headerlink" href="#funciones" title="Link to this heading">#</a></h2>
+<p>Las funciones son bloques de código con un nombre particular y que realizan una tarea específica.</p>
+<p>Las funciones en Python se ejecutan escribiendo su nombre seguido de paréntesis.</p>
+<p>Dentro de los paréntesis puede haber cero o más argumentos (entradas de la función), separados por comas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sort</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1, 2, 3]
+</pre></div>
+</div>
+<p>Construir una función es una forma de encapsular un bloque de código que puede ser reutilizado en diferentes partes del script. Las funciones pueden recibir argumentos y devolver resultados.</p>
+<p>En este curso no profundizaremos en la construcción de funciones, pero te dejo por acá la <a class="reference external" href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">documentación oficial de Python</a> para que puedas consultarla.</p>
+</section>
+<section id="tipos-de-datos">
+<h2>Tipos de datos<a class="headerlink" href="#tipos-de-datos" title="Link to this heading">#</a></h2>
+<p>Los tipos de datos son una parte fundamental de cualquier lenguaje de programación. En Python, los tipos de datos se dividen en dos categorías principales: <strong>atómicos</strong> y <strong>colecciones</strong>.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo de dato</p></th>
+<th class="head"><p>Significado</p></th>
+<th class="head"><p>Nivel</p></th>
+<th class="head"><p>Mutabilidad</p></th>
+<th class="head"><p>Ejemplo</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>Integer</p></td>
+<td><p>átomico</p></td>
+<td><p>inmutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Float</p></td>
+<td><p>átomico</p></td>
+<td><p>inmutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">3.2</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bool</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p>átomico</p></td>
+<td><p>inmutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+<td><p>None</p></td>
+<td><p>átomico</p></td>
+<td><p>inmutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">None</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">str</span></code></p></td>
+<td><p>String</p></td>
+<td><p>colección</p></td>
+<td><p>inmutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">&quot;Hello!&quot;</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+<td><p>List</p></td>
+<td><p>colección</p></td>
+<td><p>mutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">[1,2,3]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">tuple</span></code></p></td>
+<td><p>Tuple</p></td>
+<td><p>colección</p></td>
+<td><p>inmutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">(1,2)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dict</span></code></p></td>
+<td><p>Dictionary</p></td>
+<td><p>colección</p></td>
+<td><p>mutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;a&quot;:2,&quot;b&quot;:7}</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">set</span></code></p></td>
+<td><p>Set</p></td>
+<td><p>colección</p></td>
+<td><p>mutable</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">{&quot;a&quot;,&quot;b&quot;}</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Recuperado de: Dorman, M. (2025). <em>Python Basis.</em> En <em>Spatial Data Programming with Python.</em></p>
+<section id="int-y-float">
+<h3>Int y float<a class="headerlink" href="#int-y-float" title="Link to this heading">#</a></h3>
+<p>Los tipos <code class="docutils literal notranslate"><span class="pre">int</span></code> y <code class="docutils literal notranslate"><span class="pre">float</span></code> son los tipos numéricos en Python. Los números enteros (<code class="docutils literal notranslate"><span class="pre">int</span></code>) son números sin decimales, mientras que los números de punto flotante (<code class="docutils literal notranslate"><span class="pre">float</span></code>) son números con decimales.</p>
+<section id="operadores-aritmeticos">
+<h4>Operadores aritméticos<a class="headerlink" href="#operadores-aritmeticos" title="Link to this heading">#</a></h4>
+<p>Los operadores aritméticos son símbolos que indican operaciones matemáticas a realizar con los operandos.</p>
+<p>Los operadores aritméticos básicos son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operador</p></th>
+<th class="head"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p>Suma</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>Resta</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p>Multiplicación</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td><p>División</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td><p>Exponente</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">//</span></code></p></td>
+<td><p>división entera hacia abajo</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p>Módulo</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Recuperado de: Dorman, M. (2025). <em>Python Basis.</em> En <em>Spatial Data Programming with Python.</em></p>
+<p>Los operadores están asociados con las reglas de <em>precedencia</em>, que son similares y están de acuerdo con el <a class="reference external" href="https://en.wikipedia.org/wiki/Order_of_operations">orden de operaciones</a> en matemáticas. Por ejemplo, como era de esperar, <code class="docutils literal notranslate"><span class="pre">*</span></code> tiene precedencia sobre <code class="docutils literal notranslate"><span class="pre">+</span></code>, por lo tanto:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>23
+</pre></div>
+</div>
+<p>Los cálculos pueden ser <em>asignados</em> a <code class="docutils literal notranslate"><span class="pre">variables</span></code> para mantener el resultado intermedio en memoria, en caso de que nuestro cálculo requiera varios pasos. Usando el operador de asignación y los operadores aritméticos, ya sabemos cómo escribir código Python que comprende varias expresiones. Por ejemplo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">9</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>39
+</pre></div>
+</div>
+</section>
+<section id="asignacion-incremental">
+<h4>Asignación incremental<a class="headerlink" href="#asignacion-incremental" title="Link to this heading">#</a></h4>
+<p>La asignación incremental es una forma de asignar un nuevo valor a una variable, sumando o restando un valor específico al valor actual de la variable.</p>
+<p>Por ejemplo, si tenemos una variable <code class="docutils literal notranslate"><span class="pre">x</span></code> con un valor inicial de <code class="docutils literal notranslate"><span class="pre">3</span></code>, podemos incrementar su valor en <code class="docutils literal notranslate"><span class="pre">2</span></code> de la siguiente manera:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">x</span> <span class="o">+=</span> <span class="mi">2</span>
+<span class="n">x</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>5
+</pre></div>
+</div>
+<div class="admonition-ejemplo admonition">
+<p class="admonition-title">Ejemplo</p>
+<p>Python también permite la asignación decremental (<code class="docutils literal notranslate"><span class="pre">-=</span></code>), la asignación multiplicativa (<code class="docutils literal notranslate"><span class="pre">*=</span></code>) y la asignación de división (<code class="docutils literal notranslate"><span class="pre">/=</span></code>).</p>
+</div>
+</section>
+</section>
+<section id="booleanos">
+<h3>Booleanos<a class="headerlink" href="#booleanos" title="Link to this heading">#</a></h3>
+<p>Los valores booleanos son un tipo de dato que solo puede tener dos valores: <code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">False</span></code>. Estos valores son útiles para realizar comparaciones y tomar decisiones en el código.</p>
+<section id="operadores-logicos">
+<h4>Operadores lógicos<a class="headerlink" href="#operadores-logicos" title="Link to this heading">#</a></h4>
+<p>Los operadores lógicos son símbolos que se utilizan para combinar o invertir valores booleanos. Los operadores lógicos más comunes son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operador</p></th>
+<th class="head"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">and</span></code></p></td>
+<td><p>Y</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">or</span></code></p></td>
+<td><p>O</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">not</span></code></p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Recuperado de: Dorman, M. (2025). <em>Python Basis.</em> En <em>Spatial Data Programming with Python.</em></p>
+</section>
+<section id="operadores-de-comparacion">
+<h4>Operadores de comparación<a class="headerlink" href="#operadores-de-comparacion" title="Link to this heading">#</a></h4>
+<p>Los operadores de comparación son símbolos que se utilizan para comparar dos valores y devolver un valor booleano (<code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">False</span></code>). Los operadores de comparación más comunes son:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operador</p></th>
+<th class="head"><p>Significado</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">==</span></code></p></td>
+<td><p>Igual</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">!=</span></code></p></td>
+<td><p>No igual</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;</span></code></p></td>
+<td><p>Menor que</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;=</span></code></p></td>
+<td><p>Menor o igual que</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;</span></code></p></td>
+<td><p>Mayor que</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&gt;=</span></code></p></td>
+<td><p>Mayor o igual que</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Recuperado de: Dorman, M. (2025). <em>Python Basis.</em> En <em>Spatial Data Programming with Python.</em></p>
+</section>
+</section>
+<section id="none">
+<h3>None<a class="headerlink" href="#none" title="Link to this heading">#</a></h3>
+<p>El tipo <code class="docutils literal notranslate"><span class="pre">None</span></code> es un tipo especial en Python que representa la ausencia de valor o un valor nulo. Se utiliza comúnmente para indicar que una variable no tiene un valor asignado o que una función no devuelve nada.</p>
+</section>
+<section id="cadenas-de-texto-strings">
+<h3>Cádenas de texto <em>(strings)</em><a class="headerlink" href="#cadenas-de-texto-strings" title="Link to this heading">#</a></h3>
+<p>Las cadenas de texto (<code class="docutils literal notranslate"><span class="pre">str</span></code>) son secuencias de caracteres. Se pueden definir utilizando comillas simples (<code class="docutils literal notranslate"><span class="pre">'</span></code>) o dobles (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>). Las cadenas son inmutables, lo que significa que no se pueden modificar una vez creadas.</p>
+</section>
+<section id="listas">
+<h3>Listas<a class="headerlink" href="#listas" title="Link to this heading">#</a></h3>
+<p>Las listas (<code class="docutils literal notranslate"><span class="pre">list</span></code>) son colecciones ordenadas y mutables de elementos. Pueden contener elementos de diferentes tipos, incluyendo otros tipos de colecciones. Las listas se definen utilizando corchetes (<code class="docutils literal notranslate"><span class="pre">[]</span></code>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mi_lista</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Hola&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Las listas son mutables, lo que significa que puedes agregar, eliminar o modificar elementos después de haberlas creado.</p>
+<ul class="simple">
+<li><p>Crear una lista vacía</p></li>
+<li><p>Acceder a los elementos de una lista</p></li>
+<li><p>Modificar elementos de una lista</p></li>
+<li><p>Agregar elementos a una lista</p></li>
+<li><p>Eliminar elementos de una lista</p></li>
+<li><p>Slice de listas</p></li>
+<li><p>Operadores de listas (+, *)</p></li>
+</ul>
+</section>
+<section id="tuplas">
+<h3>Tuplas<a class="headerlink" href="#tuplas" title="Link to this heading">#</a></h3>
+<p>Las tuplas (<code class="docutils literal notranslate"><span class="pre">tuple</span></code>) son colecciones ordenadas e inmutables de elementos. Se definen utilizando paréntesis (<code class="docutils literal notranslate"><span class="pre">()</span></code>). Al igual que las listas, pueden contener elementos de diferentes tipos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mi_tupla</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;Hola&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Las tuplas son inmutables, lo que significa que no se pueden modificar una vez creadas. Sin embargo, puedes acceder a sus elementos de la misma manera que lo harías con una lista.</p>
+</section>
+<section id="diccionarios">
+<h3>Diccionarios<a class="headerlink" href="#diccionarios" title="Link to this heading">#</a></h3>
+<p>Los diccionarios (<code class="docutils literal notranslate"><span class="pre">dict</span></code>) son colecciones desordenadas y mutables de pares clave-valor. Se definen utilizando llaves (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) y los pares clave-valor se separan con comas. Las claves deben ser únicas y pueden ser de cualquier tipo inmutable, como cadenas, números o tuplas.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mi_diccionario</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;nombre&quot;</span><span class="p">:</span> <span class="s2">&quot;Hannia&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;edad&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">&quot;ciudad&quot;</span><span class="p">:</span> <span class="s2">&quot;Madrid&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Acceder a los elementos de un diccionario</p></li>
+<li><p>Modificar elementos de un diccionario</p></li>
+<li><p>Agregar elementos a un diccionario</p></li>
+<li><p>Eliminar elementos de un diccionario</p></li>
+</ul>
+</section>
+<section id="sets">
+<h3>Sets<a class="headerlink" href="#sets" title="Link to this heading">#</a></h3>
+<p>Los conjuntos (<code class="docutils literal notranslate"><span class="pre">set</span></code>) son colecciones desordenadas y mutables de elementos únicos. Se definen utilizando llaves (<code class="docutils literal notranslate"><span class="pre">{}</span></code>) o la función <code class="docutils literal notranslate"><span class="pre">set()</span></code>. Los conjuntos son útiles para realizar operaciones matemáticas como uniones, intersecciones y diferencias.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">mi_set</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Mutaciones y copias de código</p>
+<p>En Python, las colecciones mutables (como listas y diccionarios) pueden cambiar después de su creación.
+Cuando asignas una colección a otra variable (<code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">a</span></code>), ambas apuntan al mismo objeto en memoria: cambiar <code class="docutils literal notranslate"><span class="pre">b</span></code> también cambia <code class="docutils literal notranslate"><span class="pre">a</span></code>.
+Para evitarlo y trabajar con una copia independiente, usa métodos como <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">=</span> <span class="pre">a.copy()</span></code>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-y-asignacion">Variables y asignación</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#funciones">Funciones</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tipos-de-datos">Tipos de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#int-y-float">Int y float</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-aritmeticos">Operadores aritméticos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#asignacion-incremental">Asignación incremental</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#booleanos">Booleanos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-logicos">Operadores lógicos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#operadores-de-comparacion">Operadores de comparación</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#none">None</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cadenas-de-texto-strings">Cádenas de texto <em>(strings)</em></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#listas">Listas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuplas">Tuplas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diccionarios">Diccionarios</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sets">Sets</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By MCD. Patricia Muñoz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

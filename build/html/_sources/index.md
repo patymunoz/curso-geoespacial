@@ -21,12 +21,16 @@ A través de este curso, buscamos que las y los participantes desarrollen compet
 El curso se compone de siete módulos progresivos que abordan desde los fundamentos de Python hasta el análisis avanzado con datos geoespaciales. Se trabajará con herramientas de código abierto como GeoPandas, Shapely, Folium y osmnx.
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 :caption: Contenidos del curso
 
 bibliotecas-geo
+genera-ambiente-virtual
+recursos
 
 introduccion
+metas-aprendizaje
+
 modulo1
 modulo2
 modulo3
@@ -44,12 +48,14 @@ No se requiere experiencia avanzada en programación, aunque se recomienda conta
 
 ## 👀 Lo que vas a aprender
 
-### Mapa interactivo de crecimiento de vivienda en Jalisco (2010–2020)
+A continuación te presentamos un ejemplo de lo que podrás hacer al finalizar el curso.
+
+Este es un mapa interactivo que muestra la tasa de crecimiento promedio anual, por municipio en el estado de Jalisco para el periodo de 2010 a 2020.
+
+### Mapa interactivo de tasa de crecimiento promedio anual en Jalisco (2010–2020)
 
 ```{raw} html
 <iframe src="_static/mapa_jalisco_clasificado.html" width="100%" height="600px" style="border:none;"></iframe>
 ```
 
-```{admonition} ¡Instálalo en tu computadora!
-Consulta las **instrucciones para instalar estos módulos** en ...
-```
+**Fuente de datos:** [Visualizador-GEMA](https://gema.conahcyt.mx/).

@@ -166,7 +166,10 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos del curso</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bibliotecas-geo.html">🔹 Bibliotecas útiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genera-ambiente-virtual.html">🔹 Ambiente virtual local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursos.html">🔹 Recursos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduccion.html">🔹 Introducción al curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metas-aprendizaje.html">🔹 Metas de aprendizaje</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo1.html">🔹 Sesión 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo2.html">🔹 Sesión 2</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">🔹 Sesión 3</a></li>
@@ -314,7 +317,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -330,6 +335,21 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-coordenadas-de-referencia-crs">Sistema de Coordenadas de Referencia (CRS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-para-geopandas">Descarga para Geopandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-para-crs">Descarga para CRS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -341,6 +361,115 @@ document.write(`
                   
   <section id="sesion-3">
 <h1>🔹 Sesión 3<a class="headerlink" href="#sesion-3" title="Link to this heading">#</a></h1>
+<p>En esta sesión trabajaremos con la biblioteca <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>, que nos permite trabajar con datos geoespaciales en Python. Aprenderemos a leer, escribir y manipular datos geoespaciales, así como a realizar análisis espaciales y visualizaciones.</p>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<p>En la sesión anterior cubrimos los fundamentos de trabajar con geometrías individuales. Ahora pasaremos al tema principal de este curso: <em>trabajar con capas vectoriales</em>.</p>
+<p><a class="reference external" href="http://geopandas.org/">Geopandas</a> es la biblioteca específica para trabajar con datos geoespaciales en Python. Geopandas combina las capacidades de <code class="docutils literal notranslate"><span class="pre">pandas</span></code> para el manejo de datos tabulares con las capacidades de <code class="docutils literal notranslate"><span class="pre">shapely</span></code> para el manejo de geometrías. Esto nos permite trabajar con datos geoespaciales de manera similar a como lo haríamos con un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> de <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p>
+<p><img alt="go" src="_images/geom-of.png" /></p>
+<p><strong>Figura 1.</strong> Estructura de un GeoDataFrame (Fuente: <a class="reference external" href="https://geopandas.org/en/stable/getting_started/introduction.html">Geopandas</a>)</p>
+<p>Las estrucutras de datos de <code class="docutils literal notranslate"><span class="pre">geopandas</span></code> son:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">GeoSeries</span></code>: una serie de geometrías, similar a una columna de un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> de <code class="docutils literal notranslate"><span class="pre">pandas</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GeoDataFrame</span></code>: un <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> de <code class="docutils literal notranslate"><span class="pre">pandas</span></code> que contiene una columna de geometrías. Es la estructura principal para trabajar con datos geoespaciales en <code class="docutils literal notranslate"><span class="pre">geopandas</span></code>.</p></li>
+</ul>
+<p><img alt="gg" src="_images/geopandas.jpg" /></p>
+<p><strong>Figura 2.</strong> Estructura de un GeoDataFrame en un entorno de Jupyter Notebook (Fuente: Elaboración propia.)</p>
+</section>
+<section id="sistema-de-coordenadas-de-referencia-crs">
+<h2>Sistema de Coordenadas de Referencia (CRS)<a class="headerlink" href="#sistema-de-coordenadas-de-referencia-crs" title="Link to this heading">#</a></h2>
+<p>El <strong>Sistema de Coordenadas de Referencia</strong> <em>(CRS)</em> es fundamental para ubicar correctamente los datos geoespaciales. Sin un CRS definido, los objetos no tienen una posición significativa en el espacio, lo que los hace arbitrarios. Este sistema determina cómo se proyectan las coordenadas geográficas sobre un plano bidimensional.</p>
+<p>Una proyección de mapa es el proceso mediante el cual las coordenadas de latitud y longitud se transforman en un plano, utilizando unidades que suelen ser metros o grados, según el tipo de proyección empleada.</p>
+<p>Los CRS se dividen en dos grupos principales:</p>
+<ul class="simple">
+<li><p><strong>CRS geográficos</strong>, donde las unidades son grados (por ejemplo, <a class="reference external" href="https://epsg.io/4326">WGS84</a>)</p></li>
+<li><p><strong>CRS proyectados</strong>, donde las unidades son distancias reales, típicamente metros (por ejemplo, <a class="reference external" href="https://epsg.io/32614">UTM Zona 14N</a>, <a class="reference external" href="https://epsg.io/6368">ITRF2008 / UTM zone 13N</a>)</p></li>
+</ul>
+<p>En México, uno de los sistemas más utilizados para trabajos precisos es el <strong>ITRF</strong> o el sistema <strong>UTM</strong> adaptado a distintas zonas del país, como la Zona 13N o 14N.</p>
+<p>La forma más sencilla y común de especificar un CRS es a través del código <strong>EPSG</strong>, que es un identificador estándar. A continuación se presentan algunos CRS relevantes para México:</p>
+<p><strong>Tabla: Sistemas de Coordenadas de Referencia (CRS) comunes en México</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Nombre</p></th>
+<th class="head"><p>Tipo</p></th>
+<th class="head"><p>Unidades</p></th>
+<th class="head"><p>Código EPSG</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference external" href="https://epsg.io/4326">WGS84</a></p></td>
+<td><p>Geográfico</p></td>
+<td><p>Grados decimales (°)</p></td>
+<td><p>4326</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://epsg.io/32611">UTM zona 11N (WGS84)</a></p></td>
+<td><p>Proyectado</p></td>
+<td><p>Metros (m)</p></td>
+<td><p>32611</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://epsg.io/32612">UTM zona 12N (WGS84)</a></p></td>
+<td><p>Proyectado</p></td>
+<td><p>Metros (m)</p></td>
+<td><p>32612</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://epsg.io/6368">UTM zona 13N (WGS84)</a></p></td>
+<td><p>Proyectado</p></td>
+<td><p>Metros (m)</p></td>
+<td><p>32613</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://epsg.io/32614">UTM zona 14N (WGS84)</a></p></td>
+<td><p>Proyectado</p></td>
+<td><p>Metros (m)</p></td>
+<td><p>32614</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference external" href="https://epsg.io/32615">UTM zona 15N (WGS84)</a></p></td>
+<td><p>Proyectado</p></td>
+<td><p>Metros (m)</p></td>
+<td><p>32615</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference external" href="https://epsg.io/32616">UTM zona 16N (WGS84)</a></p></td>
+<td><p>Proyectado</p></td>
+<td><p>Metros (m)</p></td>
+<td><p>32616</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <strong>CRS geográficos</strong> abarcan toda la superficie terrestre y utilizan coordenadas angulares (grados), mientras que los <strong>CRS proyectados</strong> representan áreas más pequeñas con coordenadas en unidades lineales (metros), lo que permite realizar cálculos geométricos como distancias y áreas.</p>
+</section>
+<section id="datos">
+<h2>Datos<a class="headerlink" href="#datos" title="Link to this heading">#</a></h2>
+<section id="descarga-para-geopandas">
+<h3>Descarga para Geopandas<a class="headerlink" href="#descarga-para-geopandas" title="Link to this heading">#</a></h3>
+<p>Para esta sesión utilizaremos un conjunto de datos de Información Sociodemográfica por colonia, Jalisco 2020. Colonias INE 2024 (Colonias Enteras) proveniente del <a class="reference external" href="https://iieg.gob.mx/ns/?page_id=881">Instituto de Información Estadística y Geográfica de Jalisco (IIEG)</a>.</p>
+<p>Los datos se encuentran en formato <code class="docutils literal notranslate"><span class="pre">shapefile</span></code> y están disponibles para su descarga en el siguiente enlace:</p>
+<p><a class="reference download internal" download="" href="_downloads/a2252f1b047724591372ebeba90ef02f/colonias_iieg.zip"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-blue" /></span></a></p>
+</section>
+<section id="descarga-para-crs">
+<h3>Descarga para CRS<a class="headerlink" href="#descarga-para-crs" title="Link to this heading">#</a></h3>
+<p>Para este ejercicio utilizaremos un conjunto de datos de países del mundo en formato <code class="docutils literal notranslate"><span class="pre">shapefile</span></code> proveniente de <a class="reference external" href="https://www.naturalearthdata.com/">Natural Earth</a>. Este conjunto de datos contiene información geoespacial sobre los límites políticos de los países.</p>
+<p><a class="reference download internal" download="" href="_downloads/9e8b0d91d88da656a1dd53143a0c4431/ne_110m_admin_0_countries.zip"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-blue" /></span></a></p>
+<p>También utilizaremos un conjunto de datos del Instituto Nacional de Estadística y Geografía (INEGI) de México, que contiene información geoespacial sobre el <a class="reference external" href="https://www.inegi.org.mx/temas/mg/">Marco Geoestadístico de México</a>. Este conjunto de datos está disponible en formato <code class="docutils literal notranslate"><span class="pre">shapefile</span></code> y contiene información sobre los límites políticos y geográficos de México.</p>
+<p><a class="reference external" href="https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=794551132173"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-purple" /></a></p>
+</section>
+</section>
+<section id="contenidos-de-esta-sesion">
+<h2>Contenidos de esta sesión<a class="headerlink" href="#contenidos-de-esta-sesion" title="Link to this heading">#</a></h2>
+<p>En esta sesión estaremos trabajando con este cuaderno para trabajar con <em>GeoPandas</em>:</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion3.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p>También veremos algunos ejemplos para trabajar el <strong>Sistema de Coordenadas de Referencia (CRS)</strong></p>
+<p><img alt="Mapa de transición animado" src="_images/map.gif" /></p>
+<p>Créditos de la visualización: <a class="reference external" href="https://www.jasondavies.com/">&#64;jasondavies</a></p>
+<p>En este cuaderno trabajaremos con el <em>CRS</em> de datos geoespaciales:</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion3-1.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<p>Recursos adicionales en los que te puedes apoyar para aprender más sobre el tema de <em>CRS</em>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://spatialreference.org/">Spatial Reference</a></p></li>
+<li><p><a class="reference external" href="https://epsg.io/">EPSG</a></p></li>
+<li><p><a class="reference external" href="https://proj4.org/en/stable/operations/projections/">Proj4</a></p></li>
+<li><p><a class="reference external" href="https://epsg.org/home.html">EPSG Geodetic Parameter Dataset</a></p></li>
+</ul>
+</section>
 </section>
 
 
@@ -378,6 +507,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-coordenadas-de-referencia-crs">Sistema de Coordenadas de Referencia (CRS)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-para-geopandas">Descarga para Geopandas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#descarga-para-crs">Descarga para CRS</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

@@ -45,7 +45,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="🔹 Sesión 2" href="modulo2.html" />
-    <link rel="prev" title="🔹 Introducción al curso" href="introduccion.html" />
+    <link rel="prev" title="🔹 Metas de aprendizaje" href="metas-aprendizaje.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -166,7 +166,10 @@
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos del curso</span></p>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="bibliotecas-geo.html">🔹 Bibliotecas útiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genera-ambiente-virtual.html">🔹 Ambiente virtual local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursos.html">🔹 Recursos</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduccion.html">🔹 Introducción al curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metas-aprendizaje.html">🔹 Metas de aprendizaje</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">🔹 Sesión 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo2.html">🔹 Sesión 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo3.html">🔹 Sesión 3</a></li>
@@ -314,7 +317,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -330,6 +335,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-python">¿Qué es Python?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -341,6 +358,36 @@ document.write(`
                   
   <section id="sesion-1">
 <h1>🔹 Sesión 1<a class="headerlink" href="#sesion-1" title="Link to this heading">#</a></h1>
+<p>En esta sesión trabajaremos con los conceptos fundamentales de Python, necesarios para desarrollar programas eficientes y estructurados.</p>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<p>En esta primera sesión nos adentraremos en los conceptos fundamentales de Python, indispensables para toda persona que programa. Abordaremos temas clave como variables, tipos de datos, estructuras de control y funciones. Estos conocimientos forman la base para escribir programas legibles y bien estructurados y nos prepararán para desarrollar soluciones más complejas en el futuro.</p>
+<section id="que-es-python">
+<h3>¿Qué es Python?<a class="headerlink" href="#que-es-python" title="Link to this heading">#</a></h3>
+<p>Python es un lenguaje de programación versátil y fácil de aprender, ampliamente utilizado en el análisis geoespacial. Gracias a su rica colección de bibliotecas como <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code>,<code class="docutils literal notranslate"> <span class="pre">Shapely</span></code>, <code class="docutils literal notranslate"><span class="pre">Rasterio</span></code> y <code class="docutils literal notranslate"><span class="pre">Folium</span></code>, permite procesar, analizar y visualizar datos espaciales. Su uso se ha convertido en un estándar en proyectos de <strong>SIG (Sistemas de Información Geográfica)</strong> tanto académicos como profesionales.</p>
+<p>Quizá te preguntes <em>¿por qué usar Python si tengo un software SIG?</em>, considera lo siguiente:</p>
+<ul class="simple">
+<li><p><strong>Automatización</strong></p></li>
+<li><p><strong>Trabajar con grandes volúmenes de datos</strong></p></li>
+<li><p><strong>Generar tus propias herramientas</strong></p></li>
+<li><p><strong>Integración con otras herramientas</strong></p></li>
+</ul>
+</section>
+</section>
+<section id="contenidos-de-esta-sesion">
+<h2>Contenidos de esta sesión<a class="headerlink" href="#contenidos-de-esta-sesion" title="Link to this heading">#</a></h2>
+<ul>
+<li><p><a class="reference internal" href="parte_a.html"><span class="std std-doc">Parte A: Básicos de Python</span></a><br />
+Introducción a variables, tipos de datos, operaciones básicas y buenas prácticas de codificación.</p>
+<p>Accederemos a Google Colab, donde aprenderemos a crear un nuevo cuaderno y a guardar nuestro trabajo en Google Drive.</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion1_partea.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+</li>
+<li><p><a class="reference internal" href="parte_b.html"><span class="std std-doc">Parte B: Condicionantes y for loops</span></a><br />
+Uso de estructuras condicionales (<code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code>, <code class="docutils literal notranslate"><span class="pre">elif</span></code>) y ciclos <code class="docutils literal notranslate"><span class="pre">for</span></code> para controlar el flujo de los programas.</p></li>
+</ul>
+<p>Al finalizar el taller, tienes disponible un cuaderno para practicar lo aprendido:</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion1_practica.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+</section>
 </section>
 
 
@@ -355,12 +402,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="introduccion.html"
+       href="metas-aprendizaje.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">🔹 Introducción al curso</p>
+        <p class="prev-next-title">🔹 Metas de aprendizaje</p>
       </div>
     </a>
     <a class="right-next"
@@ -378,6 +425,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-python">¿Qué es Python?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

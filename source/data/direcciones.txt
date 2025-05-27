@@ -1,0 +1,16 @@
+id;direccion
+1000;Patria 2440, 45070, Zapopan, Jal.
+1001;Avenida Obreros de Cananea 747, Industrial los Belenes, 45157, Zapopan, Jal.
+1002;Epigmenio González 66, Mexicaltzingo, 44180, Guadalajara, Jal.
+1003;Ignacio L Vallarta 1488, 44600, Guadalajara, Jal.
+1004;Juan Manuel 175, 44100, Guadalajara, Jal.
+1005;Km 20, Carretera Guadalajara - Chapala, 45678, Jal.
+1006;Circuito JVC. 2800, 45014, Zapopan, Jal.
+1007;Calzada Independencia Sur 973, Centro, 44100, Guadalajara, Jal.
+1008;Calle Degollado, 44100 Guadalajara, Jal.
+1009;Anillo Periférico Norte Manuel Gómez Morín 1695, Rinconada de La Azalea, Belenes Norte, 45180, Zapopan, Jal.
+1010;Avenida 16 de Septiembre 710, Mexicaltzingo, 44180, Guadalajara, Jal.
+1011;Guillermo González Camarena 375, 45136, Zapopan, Jal.
+1012;Avenida Lapislázuli 3445, Victoria, 45089, Zapopan, Jal.
+1013;Avenida Mariano Otero 1499, Verde Valle, 44550, Guadalajara, Jal.
+1014;Avenida Patria 1201, 45110, Zapopan, Jal.
