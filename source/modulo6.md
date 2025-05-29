@@ -1,6 +1,6 @@
 # 🔹 Sesión 6
 
-En esta sesión trabajaremos con la visualización de datos espaciales estáticos utilizando Matplotlib y GeoPandas. Aprenderás a crear mapas básicos y a personalizar su apariencia.
+En esta sesión trabajaremos con la _visualización de datos espaciales estáticos_ utilizando Matplotlib y GeoPandas. Aprenderás a crear mapas básicos y a personalizar su apariencia.
 
 ## Matplotlib y GeoPandas
 
@@ -201,6 +201,7 @@ En esta sesión estaremos trabajando con este cuaderno de trabajo:
 
 ## Ejercicio práctico
 
+```{admonition} Manos a la obra
 i. Entra al portal [GEMA](https://gema.conahcyt.mx/visualizador?capas=#map=4/23.6254/-89.1034).
 
 ii. Explora el porta y descarga un conjunto de datos de tu interés en formato `.geojson`.
@@ -208,6 +209,7 @@ ii. Explora el porta y descarga un conjunto de datos de tu interés en formato `
 iii. Ojo 🧿, este conjunto de datos debe contar con variables que se puedan clasificar, ya sea _cuantitativas_ o _cualitativas_.
 
 iv. Genera un mapa estático y preséntalo a la clase 🤓.
+```
 
 ## Tips 🔥🔥🔥
 
