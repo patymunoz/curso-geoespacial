@@ -20,9 +20,22 @@
 
   Aplicarás técnicas de reclasificación y llevarás a cabo análisis espaciales más complejos.
 
-- #### [Sesión 6 - Visualización de datos espaciales con Folium](../source/modulo6.md)
+- #### [Sesión 6 - Visualización de datos espaciales estáticos](../source/modulo6.md)
 
-  Crearás mapas interactivos para visualizar información geográfica usando Folium.
+  Crearás mapas interactivos para visualizar información geográfica.
 
-- #### [Sesión 7 - OpenStreetMap y análisis de datos](../source/modulo7.md)
+- #### [Sesión 7 - Visualización de datos espaciales dinámicos](../source/modulo7.md)
+
+  Aprenderás a crear mapas interactivos y visualizaciones dinámicas con Folium.
+
+- #### [Sesión 8 - Cómo publicar y compartir tus mapas](../source/modulo8.md)
+
+  Descubrirás cómo publicar y compartir tus mapas en línea.
+
+- #### [Sesión 9 - OpenStreetMap y análisis de datos](../source/modulo9.md)
+
   Explorarás y trabajarás con datos de OpenStreetMap para enriquecer tus análisis espaciales.
+
+- #### [Sesión 10 - ArcPy](../source/modulo10.md)
+
+  Aprenderás a usar ArcPy para automatizar tareas en ArcGIS Pro.
