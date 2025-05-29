@@ -317,7 +317,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -333,6 +335,25 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reclasificacion-de-datos">Reclasificación de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapclassify-de-pysal"><code class="docutils literal notranslate"><span class="pre">mapclassify</span></code> de PySAL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-archivos-tif">Ráster (archivos .tif)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-compartido">Código compartido</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -344,6 +365,86 @@ document.write(`
                   
   <section id="sesion-5">
 <h1>🔹 Sesión 5<a class="headerlink" href="#sesion-5" title="Link to this heading">#</a></h1>
+<p>En esta sesión exploraremos el concepto de <strong>reclasificación de datos</strong>. Para esto, utilizaremos datos de uso del suelo y vegetación, así como imágenes satelitales.</p>
+<section id="reclasificacion-de-datos">
+<h2>Reclasificación de datos<a class="headerlink" href="#reclasificacion-de-datos" title="Link to this heading">#</a></h2>
+<p>En análisis GIS (Geographic Information Systems), trabajamos con datos espaciales, como mapas de uso del suelo, elevación, clima, etc. <strong>Reclasificar datos</strong> significa tomar un conjunto de valores existentes y agruparlos, simplificarlos o convertirlos en nuevas categorías según ciertos criterios.</p>
+<div class="tip admonition">
+<p class="admonition-title">Ejemplo práctico</p>
+<p>Imagina que tienes un mapa de elevación con valores de altitud entre 0 y 3,000 metros. Puedes reclasificarlo así:</p>
+<ul class="simple">
+<li><p>0-500 m –&gt; categoría 1 (baja altitud)</p></li>
+<li><p>501-1,500 m –&gt; categoría 2 (media altitud)</p></li>
+<li><p>1,501-3,000 m –&gt; categoría 3 (alta altitud)</p></li>
+</ul>
+<p>Esto facilita el análisis posterior, como por ejemplo, estudia qué zonas están en riesgo de inundación (aquellas más probables en baja altitud).</p>
+</div>
+<p>Pero también ayuda a clasificación información basada en satisfacer criterios, por ejemplo:</p>
+<p>Estamos interesadas en indetificar los siguientes criterios:</p>
+<ul class="simple">
+<li><p><strong>Zonas de elevación altas</strong></p></li>
+<li><p><strong>Zonas cercanas a parques</strong></p></li>
+<li><p><strong>Zonas alejadas de carreteras ruidosdas</strong></p></li>
+</ul>
+<p>Para lograr esto, podemos reclasificar los datos de elevación, uso del suelo y carreteras, asignando categorías específicas en conjunto.</p>
+<section id="mapclassify-de-pysal">
+<h3><code class="docutils literal notranslate"><span class="pre">mapclassify</span></code> de PySAL<a class="headerlink" href="#mapclassify-de-pysal" title="Link to this heading">#</a></h3>
+<p>En mapas temáticos (como los mapas de coropletas), clasificamos datos numéricos en grupos o clases para visualizar mejor patrones geográficos (por ejemplo, niveles de ingreso por región). Cada clasificador define cómo se agrupan esos valores.</p>
+<p>Aquí te comparto solo algunos de los clasificadores más usados y que, de hecho, puedes usar también en ArcGis Pro y QGIS, ya que vienen incluidos en sus herramientas de análisis:</p>
+<p>📊 Clasificadores más usados en mapas temáticos</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Clasificador</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Equal_Interval</p></td>
+<td><p>Divide el rango de datos en intervalos iguales. Fácil de interpretar.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Quantiles</p></td>
+<td><p>Cada clase contiene el mismo número de observaciones.</p></td>
+</tr>
+<tr class="row-even"><td><p>Natural_Breaks</p></td>
+<td><p>También conocido como Fisher-Jenks. Minimiza la varianza dentro de clases.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Std_Mean</p></td>
+<td><p>Usa media y desviación estándar para agrupar datos.</p></td>
+</tr>
+<tr class="row-even"><td><p>Box_Plot</p></td>
+<td><p>Clasificación basada en cuartiles y valores atípicos.</p></td>
+</tr>
+<tr class="row-odd"><td><p>HeadTail_Breaks</p></td>
+<td><p>Ideal para datos muy sesgados o con distribución de Ley de Potencia.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Trabajar desde python, en este sentido, además de ofrecernos las mismas herramientas, puedes customizar los clasificadores y adaptarlos a tus necesidades de análisis. Es lo que veremos a continuación!!! 👁️‍🗨️👁️‍🗨️👁️‍🗨️</p>
+</section>
+</section>
+<section id="datos">
+<h2>Datos<a class="headerlink" href="#datos" title="Link to this heading">#</a></h2>
+<p>Esta vez trabajaremos con los datos <em>“Conjunto de datos vectoriales de uso del suelo y vegetación escala 1:250 000”</em> del <a class="reference external" href="https://www.inegi.org.mx/app/biblioteca/ficha.html?upc=702825570231">INEGI</a>, que se pueden descargar desde el siguiente enlace:</p>
+<p><a class="reference download internal" download="" href="_downloads/5f9a128668971e3c4b34021065d579f6/uso_de_suelo.zip"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-blue" /></span></a></p>
+<p>También te dejo por acá el <a class="reference external" href="https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825063443.pdf"><strong>diccionario de variables</strong></a> para que puedas consultar la información de cada variable, por si te interesa ahondar más al respecto de los datos.</p>
+<section id="raster-archivos-tif">
+<h3>Ráster (archivos .tif)<a class="headerlink" href="#raster-archivos-tif" title="Link to this heading">#</a></h3>
+<p>Para el caso de los archivos .tif, los puedes descargar desde el siguiente enlace:</p>
+<p><a class="reference download internal" download="" href="_downloads/93d0c77147001726c7f1935feeefebf6/sentinel_jalisco_rgb_clean.tif"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-green" /></span></a></p>
+<p><a class="reference download internal" download="" href="_downloads/619d582c06a236e3cfb4021c4820b340/elev_jalisco.tif"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-orange" /></span></a></p>
+<p>Ambos archivos fueron descargados a través de <strong>Google Earth Engine</strong>.</p>
+</section>
+</section>
+<section id="contenidos-de-esta-sesion">
+<h2>Contenidos de esta sesión<a class="headerlink" href="#contenidos-de-esta-sesion" title="Link to this heading">#</a></h2>
+<p>En esta sesión estaremos trabajando con este cuaderno de trabajo:</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion5.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+<section id="codigo-compartido">
+<h3>Código compartido<a class="headerlink" href="#codigo-compartido" title="Link to this heading">#</a></h3>
+<p>Abre <a class="reference internal" href="codigo-sesion5.html"><span class="std std-doc">este archivo</span></a> y copia el código cuando la profesora te lo indique 🙏🏾</p>
+</section>
+</section>
 </section>
 
 
@@ -381,6 +482,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reclasificacion-de-datos">Reclasificación de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapclassify-de-pysal"><code class="docutils literal notranslate"><span class="pre">mapclassify</span></code> de PySAL</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#raster-archivos-tif">Ráster (archivos .tif)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-compartido">Código compartido</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
