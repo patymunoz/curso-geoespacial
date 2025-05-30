@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>direcciones</name>
+    <Style id="icon-1899-0288D1-normal">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-highlight">
+      <IconStyle>
+        <color>ffd18802</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Placemark>
+      <name>C4 Stage</name>
+      <description>Avenida Patria Sur, Unidad Cadete Francisco Márquez, Zapopan, Región Centro, Jalisco, 45070, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.419878,20.641573,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Auditorio Telmex</name>
+      <description>Avenida Obreros de Cananea, Industrial Los Belenes, Zapopan, Región Centro, Jalisco, 45157, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.3811661,20.7332997,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Foro Independencia</name>
+      <description>Foro Independencia, 66, Calle Epigmenio González, Mexicaltzingo, Guadalajara, Región Centro, Jalisco, 44180, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.347693,20.66631,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>C3 Stage</name>
+      <description>C3 Stage, 1488, Avenida Ignacio L. Vallarta, Obrera, Guadalajara, Región Centro, Jalisco, 44600, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.369531,20.674741,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Algo</name>
+      <description>Juan Manuel, Guadalajara, Región Centro, Jalisco, 44670, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.391896,20.681925,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Arena VFG</name>
+      <description>Carretera Guadalajara - Entronque Jocotepec, Ixtlahuacán de los Membrillos, Región Centro, Jalisco, 45935, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.2621775,20.4682069,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Estadio Akron</name>
+      <description>Estadio Akron, 2800, Circuito JVC, Ayamonte, Zapopan, Región Centro, Jalisco, 45019, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.462672,20.681847,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Parque agua azul</name>
+      <description>Calzada Independencia Sur, Las Nueve Esquinas, Guadalajara, Región Centro, Jalisco, 44450, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.3481768,20.6593312,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Teatro Degollado</name>
+      <description>Calle Degollado, Guadalajara Centro, Guadalajara, Región Centro, Jalisco, 44100, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.3446139,20.6762252,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Conjunto de artes escénicas</name>
+      <description>Anillo Periférico Norte Manuel Gómez Morín, Industrial Zapopan Norte, Zapopan, Región Centro, Jalisco, 45145, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.3812204,20.7371617,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Teatro Diana</name>
+      <description>Avenida 16 de Septiembre, Mexicaltzingo, Guadalajara, Región Centro, Jalisco, 44180, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.3490904,20.6652533,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Palacio de la Cultura y la Comunicación (PALCCO)</name>
+      <description>Palacio de la Cultura y la Comunicación (PALCCO), 375, Avenida Central Guillermo González Camerena, Residencial Poniente, Zapopan, Región Centro, Jalisco, 45210, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.429872,20.725797,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Teatro Galerías</name>
+      <description>Avenida Lapislázuli, Victoria, Guadalajara, Región Centro, Jalisco, 45089, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.4044825,20.6456926,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Foro FIL</name>
+      <description>Avenida Mariano Otero, Zona de estudio, Guadalajara, Región Centro, Jalisco, 44510, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.391514,20.6532158,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Estadio 3 de marzo</name>
+      <description>La Flor de Córdoba, 1201, Avenida de la Patria, Villa Universitaria, Zapopan, Región Centro, Jalisco, 45129, México</description>
+      <styleUrl>#icon-1899-0288D1</styleUrl>
+      <Point>
+        <coordinates>
+          -103.420095,20.693918,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

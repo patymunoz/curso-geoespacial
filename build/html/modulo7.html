@@ -316,7 +316,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -332,6 +334,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-mapas-interactivos">¿Por qué mapas interactivos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-folium">¿Qué es Folium?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-practico">Ejercicio práctico</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -343,6 +357,67 @@ document.write(`
                   
   <section id="sesion-7">
 <h1>🔹 Sesión 7<a class="headerlink" href="#sesion-7" title="Link to this heading">#</a></h1>
+<p>En esta sesión trabajaremos con la <em>visualización de datos espaciales interactivos</em> utilizando la biblioteca <strong>Folium</strong>. Aprenderás a crear mapas dinámicos con capacidades de interacción, y a personalizar su estilo y contenido visual.</p>
+<p>Los mapas interactivos son ideales cuando se desea:</p>
+<ul class="simple">
+<li><p>Explorar información geoespacial de forma intuitiva.</p></li>
+<li><p>Permitir a la persona usuaria desplazarse, acercar/alejar, hacer clic en objetos.</p></li>
+<li><p>Compartir resultados fácilmente en web o notebooks.</p></li>
+</ul>
+<section id="por-que-mapas-interactivos">
+<h2>¿Por qué mapas interactivos?<a class="headerlink" href="#por-que-mapas-interactivos" title="Link to this heading">#</a></h2>
+<p>A diferencia de los mapas estáticos (como los que creamos con <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> o <code class="docutils literal notranslate"><span class="pre">geopandas.plot()</span></code>), los mapas interactivos permiten:</p>
+<ul class="simple">
+<li><p>Ver informacion adicional al hacer clic <em>(pop ups)</em></p></li>
+<li><p>Encender y apagar capas</p></li>
+<li><p>Explorar diferentes niveles de zoom</p></li>
+<li><p>Integrarse fácilmente en notebooks o páginas web.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Otras bibliotecas para mapas interactivos</p>
+<p>Además de <strong>Folium</strong>, existen otras bibliotecas en Python para crear mapas dinámicos:</p>
+<ul class="simple">
+<li><p>🌍 <a class="reference external" href="https://leafletjs.com/">Leaflet.js</a>: base en JavaScript, utilizada internamente por Folium.</p></li>
+<li><p>🧭 <a class="reference external" href="https://openlayers.org/">OpenLayers</a>: potente y flexible, ideal para desarrollos web avanzados.</p></li>
+<li><p>📊 <a class="reference external" href="https://plotly.com/python/maps/">Plotly Express</a>: mapas integrados en visualizaciones estadísticas.</p></li>
+<li><p>📈 <a class="reference external" href="https://docs.bokeh.org/en/latest/">Bokeh</a>: mapas como parte de dashboards y gráficos interactivos.</p></li>
+<li><p>🌐 <a class="reference external" href="https://geoviews.org/">Geoviews</a>: integración con HoloViews, excelente para análisis exploratorio.</p></li>
+</ul>
+</div>
+</section>
+<section id="que-es-folium">
+<h2>¿Qué es Folium?<a class="headerlink" href="#que-es-folium" title="Link to this heading">#</a></h2>
+<p><img alt="" src="_images/folium.png" /></p>
+<p>Folium es una biblioteca de <strong>Python</strong> que permite crear mapas interactivos basados en <a class="reference external" href="https://leafletjs.com/">Leaflet.js</a>. Tiene una sintaxis sencilla y permite integrar fácilmente datos espaciales con estilo personalizado, marcadores, capas y controles interactivos.</p>
+<p>Puedes checar la documentación oficial de <a class="reference external" href="https://python-visualization.github.io/folium/latest/getting_started.html">Folium</a></p>
+</section>
+<section id="datos">
+<h2>Datos<a class="headerlink" href="#datos" title="Link to this heading">#</a></h2>
+<p>Trabajaremos con los datos que anteriormente habíamos corregido en la sesión de <code class="docutils literal notranslate"><span class="pre">geocodificación</span></code> <a class="reference internal" href="modulo4.html"><span class="std std-doc">(Sesión 4)</span></a>.</p>
+<p>Formato: <code class="docutils literal notranslate"><span class="pre">KML</span></code></p>
+<p><a class="reference download internal" download="" href="_downloads/23e0dbaf3616b2172d412fbc7112cbdc/direcciones-corregidas.kml"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-blue" /></span></a></p>
+<p>También utilizaremos el conjunto de datos de Información Sociodemográfica por colonia, Jalisco 2020. Colonias INE 2024 (Colonias Enteras) proveniente del <a class="reference external" href="https://iieg.gob.mx/ns/?page_id=881">Instituto de Información Estadística y Geográfica de Jalisco (IIEG)</a>.</p>
+<p>Formato: <code class="docutils literal notranslate"><span class="pre">GeoJson</span></code></p>
+<p><a class="reference download internal" download="" href="_downloads/db640b8cdbb3d1395a92e94b958ced9c/colonias.geojson"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-purple" /></span></a></p>
+<p>Finalmente, trabajaremos con datos provenientes de <a class="reference external" href="https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=975">GPWv4 (Gridded Population of the World)</a> y un recorte de una capa proveniente de <a class="reference external" href="https://www.naturalearthdata.com/downloads/110m-cultural-vectors/">Natural Earth</a>. Sin embargo, este archivo que te comparto trabajado y listo para descargarlo directamente:</p>
+<p>Formato: <code class="docutils literal notranslate"><span class="pre">TIF</span></code></p>
+<p><a class="reference download internal" download="" href="_downloads/751b3890bcf331f6a0a45c8a4a9924dd/poblacion_mexico_1995.tif"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-orange" /></span></a></p>
+</section>
+<section id="contenidos-de-esta-sesion">
+<h2>Contenidos de esta sesión<a class="headerlink" href="#contenidos-de-esta-sesion" title="Link to this heading">#</a></h2>
+<p>En esta sesión estaremos trabajando con este cuaderno de trabajo:</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion7.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+</section>
+<section id="ejercicio-practico">
+<h2>Ejercicio práctico<a class="headerlink" href="#ejercicio-practico" title="Link to this heading">#</a></h2>
+<div class="admonition-manos-a-la-obra admonition">
+<p class="admonition-title">Manos a la obra</p>
+<p>i. Entra al portal <a class="reference external" href="https://gema.conahcyt.mx/visualizador?capas=#map=4/23.6254/-89.1034">GEMA</a>.</p>
+<p>ii. Explora el porta y descarga un conjunto de datos de tu interés en formato <code class="docutils literal notranslate"><span class="pre">.geojson</span></code>.</p>
+<p>iii. Este conjunto de datos debe contar con variables que en geometría de puntos, líneas o polígonos.</p>
+<p>iv. Genera un mapa interactivo y preséntalo a la clase 🤓.</p>
+</div>
+</section>
 </section>
 
 
@@ -371,6 +446,25 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#por-que-mapas-interactivos">¿Por qué mapas interactivos?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-folium">¿Qué es Folium?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ejercicio-practico">Ejercicio práctico</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
