@@ -12,3 +12,5 @@ source/data/extract-data
 source/data-noshare
 
 notebooks/cache/
+
+source/data/outputs

@@ -18,7 +18,7 @@ A través de este curso, buscamos que las y los participantes desarrollen compet
 
 ## 📖 Contenidos del curso
 
-El curso se compone de siete módulos progresivos que abordan desde los fundamentos de Python hasta el análisis avanzado con datos geoespaciales. Se trabajará con herramientas de código abierto como GeoPandas, Shapely, Folium y osmnx.
+El curso se compone de 10 módulos progresivos que abordan desde los fundamentos de Python hasta el análisis avanzado con datos geoespaciales. Se trabajará con herramientas de código abierto como GeoPandas, Shapely, Folium y osmnx.
 
 ```{toctree}
 :maxdepth: 1
@@ -38,6 +38,10 @@ modulo4
 modulo5
 modulo6
 modulo7
+modulo8
+modulo9
+modulo10
+
 ```
 
 ## 🌐 Metodología

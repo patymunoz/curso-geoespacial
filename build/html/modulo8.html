@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>🔹 Sesión 8 &#8212; Manejo de datos geoespaciales en Python</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=e1a75a79"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modulo8';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="🔹 Sesión 9" href="modulo9.html" />
+    <link rel="prev" title="🔹 Sesión 7" href="modulo7.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/codigo.png" class="logo__image only-light" alt="Manejo de datos geoespaciales en Python - Home"/>
+    <script>document.write(`<img src="_static/codigo.png" class="logo__image only-dark" alt="Manejo de datos geoespaciales en Python - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Manejo de datos geoespaciales en Python
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contenidos del curso</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bibliotecas-geo.html">🔹 Bibliotecas útiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genera-ambiente-virtual.html">🔹 Ambiente virtual local</a></li>
+<li class="toctree-l1"><a class="reference internal" href="recursos.html">🔹 Recursos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduccion.html">🔹 Introducción al curso</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metas-aprendizaje.html">🔹 Metas de aprendizaje</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo1.html">🔹 Sesión 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo2.html">🔹 Sesión 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo3.html">🔹 Sesión 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo4.html">🔹 Sesión 4</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo5.html">🔹 Sesión 5</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo6.html">🔹 Sesión 6</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo7.html">🔹 Sesión 7</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">🔹 Sesión 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo9.html">🔹 Sesión 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo10.html">🔹 Sesión 10</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/patymunoz/curso-geoespacial" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/modulo8.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>🔹 Sesión 8</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publicar-mapas-interactivos-en-la-web">Publicar mapas interactivos en la web</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-necesitas">¿Qué necesitas?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opcion-1-publicar-usando-solo-el-navegador-sin-terminal">Opción 1: Publicar usando solo el navegador (sin terminal)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-repositorio">1. Crear un repositorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subir-el-archivo-mapa-html">2. Subir el archivo <code class="docutils literal notranslate"><span class="pre">mapa.html</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activar-github-pages">3. Activar GitHub Pages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opcion-2-publicar-usando-git-y-la-terminal">Opción 2: Publicar usando Git y la terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sigue-el-paso-numero-1-de-opcion-1">1. Sigue el paso número 1 de Opción 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sigue-el-paso-3-de-la-opcion-1">2. Sigue el paso 3 de la Opción 1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tip">Pro Tip 🔥🔥🔥</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-github-pages-jekyll">Usando GitHub Pages + Jekyll</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#carpeta-assets">📁 Carpeta assets</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-config-yml">⚙️ Archivo <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-index-md">⚙️ Archivo <code class="docutils literal notranslate"><span class="pre">index.md</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="sesion-8">
+<h1>🔹 Sesión 8<a class="headerlink" href="#sesion-8" title="Link to this heading">#</a></h1>
+<section id="publicar-mapas-interactivos-en-la-web">
+<h2>Publicar mapas interactivos en la web<a class="headerlink" href="#publicar-mapas-interactivos-en-la-web" title="Link to this heading">#</a></h2>
+<p>En esta sesión vamos a aprender a <strong>publicar mapas interactivos creados con Folium</strong> en la web a través de <code class="docutils literal notranslate"><span class="pre">Github</span> <span class="pre">Pages</span></code>.</p>
+<p>Tendremos dos tutoriales:</p>
+<ul class="simple">
+<li><p>Uno para personas que ya han trabajado con <code class="docutils literal notranslate"><span class="pre">Git</span></code> y <code class="docutils literal notranslate"><span class="pre">GitHub</span></code>.</p></li>
+<li><p>Otro para personas que <strong>prefieren no usar la terminal</strong> (<em>command prompt</em>) y quieren hacerlo solo desde el navegador.</p></li>
+</ul>
+<p>Puedes revisar la documentación oficial de <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.</p>
+</section>
+<section id="que-necesitas">
+<h2>¿Qué necesitas?<a class="headerlink" href="#que-necesitas" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Tener una cuenta en <a class="github reference external" href="https://github.com">github</a></p></li>
+<li><p>Tener un archivo <code class="docutils literal notranslate"><span class="pre">mapa.html</span></code> generado con <code class="docutils literal notranslate"><span class="pre">Folium</span></code></p>
+<ul>
+<li><p>Ejemplo en Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">folium</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mf">19.4326</span><span class="p">,</span> <span class="o">-</span><span class="mf">99.1332</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">m</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;mapa.html&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="opcion-1-publicar-usando-solo-el-navegador-sin-terminal">
+<h2>Opción 1: Publicar usando solo el navegador (sin terminal)<a class="headerlink" href="#opcion-1-publicar-usando-solo-el-navegador-sin-terminal" title="Link to this heading">#</a></h2>
+<section id="crear-un-repositorio">
+<h3>1. Crear un repositorio<a class="headerlink" href="#crear-un-repositorio" title="Link to this heading">#</a></h3>
+<p>a. Ve a <a class="reference external" href="https://github.com">github.com</a> e inicia sesión.</p>
+<p>b. Haz clic en <strong>+ (arriba a la derecha)</strong> → <strong>New</strong>.</p>
+<p><img alt="" src="_images/1.png" /></p>
+<p>c. Ponle un nombre, por ejemplo: <code class="docutils literal notranslate"><span class="pre">my-map</span></code>.</p>
+<div class="tip admonition">
+<p class="admonition-title">github.io</p>
+<p>En algunos foros se menciona que el nombre del repositorio debe seguir el formato <code class="docutils literal notranslate"><span class="pre">nombredeusuario.github.io</span></code>.
+Sin embargo, en mi experiencia, <strong>no fue necesario usar esa estructura</strong>: el mapa se desplegó correctamente con un nombre de repositorio diferente.</p>
+</div>
+<p><img alt="" src="_images/2.png" /></p>
+<p>d. Asegúrate de que:</p>
+<ul class="simple">
+<li><p>Sea <strong>público</strong></p></li>
+<li><p><strong>No marques</strong> “Add a README file”</p></li>
+</ul>
+<p>e. Haz clic en <strong>Create repository</strong></p>
+</section>
+<hr class="docutils" />
+<section id="subir-el-archivo-mapa-html">
+<h3>2. Subir el archivo <code class="docutils literal notranslate"><span class="pre">mapa.html</span></code><a class="headerlink" href="#subir-el-archivo-mapa-html" title="Link to this heading">#</a></h3>
+<p>a. En tu nuevo repositorio, haz clic en <strong>Uploading an existing file</strong></p>
+<p><img alt="" src="_images/3.png" /></p>
+<p>b. Arrastra o selecciona tu archivo <code class="docutils literal notranslate"><span class="pre">mapa.html</span></code>
+b. Haz clic en <strong>Commit changes</strong></p>
+<p><img alt="" src="_images/4.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="activar-github-pages">
+<h3>3. Activar GitHub Pages<a class="headerlink" href="#activar-github-pages" title="Link to this heading">#</a></h3>
+<p>a. En tu repositorio, ve a la pestaña <strong>Settings</strong></p>
+<p><img alt="" src="_images/5.png" /></p>
+<p>b. En el menú lateral, haz clic en <strong>Pages</strong></p>
+<p><img alt="" src="_images/6.png" /></p>
+<p>c. En “Source”, selecciona:</p>
+<ul class="simple">
+<li><p><strong>Branch:</strong> <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p><strong>Folder:</strong> <code class="docutils literal notranslate"><span class="pre">/</span> <span class="pre">(root)</span></code>
+d. Haz clic en <strong>Save</strong></p></li>
+</ul>
+<p><img alt="" src="_images/7.png" /></p>
+<p>GitHub te mostrará un enlace como este:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>https://patymunoz.github.io/mi-mapa-darks/mymap.darks.html
+</pre></div>
+</div>
+<p><strong>NOTA:</strong> Si no te muestra el link, regresa a la página principal de tu repositorio y has lo siguiente:</p>
+<p><img alt="" src="_images/8.png" /></p>
+<p>¡Ese es tu mapa interactivo en línea!</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="opcion-2-publicar-usando-git-y-la-terminal">
+<h2>Opción 2: Publicar usando Git y la terminal<a class="headerlink" href="#opcion-2-publicar-usando-git-y-la-terminal" title="Link to this heading">#</a></h2>
+<div class="admonition-git-bash admonition">
+<p class="admonition-title">Git Bash</p>
+<p>Si estás utilizando <em>Windows</em>, te recomiendo usar la terminal <strong>Git Bash</strong> para clonar repositorios desde GitHub, ya que ofrece una experiencia más fluida y compatible con comandos de Unix.</p>
+<p>👉 <a class="reference external" href="https://git-scm.com/downloads">Descargar Git Bash</a></p>
+</div>
+<section id="sigue-el-paso-numero-1-de-opcion-1">
+<h3>1. Sigue el paso número 1 de <a class="reference internal" href="#opcion-1-publicar-usando-solo-el-navegador-sin-terminal"><span class="std std-ref">Opción 1</span></a><a class="headerlink" href="#sigue-el-paso-numero-1-de-opcion-1" title="Link to this heading">#</a></h3>
+<p>Desde tu computadora (requiere tener Git instalado):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clona el repositorio desde GitHub a tu computadora</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/tuusuarix/mi-mapa-darks.git
+
+<span class="c1"># Entra a la carpeta del repositorio clonado</span>
+<span class="nb">cd</span><span class="w"> </span>mi-mapa-darks
+
+<span class="c1"># (Asegúrate de que tu archivo mapa.html esté aquí; si no, muévelo o créalo aquí)</span>
+
+<span class="c1"># Añade el archivo (o todos los cambios)</span>
+git<span class="w"> </span>add<span class="w"> </span>mapa.html
+
+<span class="c1"># Haz un commit con un mensaje</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Subo el archivo mapa.html&quot;</span>
+
+<span class="c1"># Sube el cambio a GitHub</span>
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</pre></div>
+</div>
+</section>
+<section id="sigue-el-paso-3-de-la-opcion-1">
+<h3>2. Sigue el paso 3 de la <a class="reference internal" href="#opcion-1-publicar-usando-solo-el-navegador-sin-terminal"><span class="std std-ref">Opción 1</span></a><a class="headerlink" href="#sigue-el-paso-3-de-la-opcion-1" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="pro-tip">
+<h2>Pro Tip 🔥🔥🔥<a class="headerlink" href="#pro-tip" title="Link to this heading">#</a></h2>
+<p>Ya publicamos un mapa de forma muy sencilla, ¡pero tenemos ciertas limitaciones!<br />
+¿Qué pasa si además de nuestros mapas interactivos queremos compartir gráficos, texto, imágenes o explicaciones completas?</p>
+<p>Te comparto una opción relativamente fácil que puedes aplicar de inmediato 😉</p>
+<section id="usando-github-pages-jekyll">
+<h3>Usando GitHub Pages + Jekyll<a class="headerlink" href="#usando-github-pages-jekyll" title="Link to this heading">#</a></h3>
+<p>Puedes consulta esta documentación oficial de <a class="reference external" href="https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll">Jekyll | GitHub Pages</a>.</p>
+<p>…pero aquí te lo explico paso a paso 👇</p>
+<p>1️⃣ En GitHub creamos un nuevo repositorio.</p>
+<ul class="simple">
+<li><p>Esta vez sí debe seguir la estructura <code class="docutils literal notranslate"><span class="pre">numbreusuario.github.io</span></code>, como en el siguiente ejemplo:</p></li>
+</ul>
+<p><img alt="" src="_images/octocat.png" /></p>
+<ul class="simple">
+<li><p>Asegúrate de que el repositorio sea <strong>público.</strong></p></li>
+<li><p>Marca la opción para generar un archivo <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p></li>
+</ul>
+<p>2️⃣ Clona tu repositorio localmente</p>
+<ul class="simple">
+<li><p>Puedes usar <code class="docutils literal notranslate"><span class="pre">Git</span> <span class="pre">Bash</span></code> y trabajar en tu editor favorito, como <code class="docutils literal notranslate"><span class="pre">Visual</span> <span class="pre">Studio</span> <span class="pre">Code</span></code> u otro IDE.</p></li>
+</ul>
+<p>3️⃣ Después de clonar, probablemente solo tendrás <code class="docutils literal notranslate"><span class="pre">README.md</span></code>. Agrega la siguiente estructura:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>MAPAI.GITHUB.IO/
+├──<span class="w"> </span>assets/<span class="w">                     </span><span class="c1"># Carpeta para tus mapas HTML, imágenes u otros recursos</span>
+│<span class="w">   </span>├──<span class="w"> </span>mymap_darks.html
+│<span class="w">   </span>└──<span class="w"> </span>tipos_culturales.html
+│
+├──<span class="w"> </span>_config.yml<span class="w">                 </span><span class="c1"># Configuración de Jekyll (requerido por GitHub Pages)</span>
+├──<span class="w"> </span>index.md<span class="w">                   </span><span class="c1"># Página principal (Markdown procesado por Jekyll)</span>
+└──<span class="w"> </span>README.md<span class="w">                  </span><span class="c1"># (Opcional) Descripción del repositorio para GitHub</span>
+</pre></div>
+</div>
+<section id="carpeta-assets">
+<h4>📁 Carpeta assets<a class="headerlink" href="#carpeta-assets" title="Link to this heading">#</a></h4>
+<p>Aquí puedes colocar los archivos <em>html</em> generados con <code class="docutils literal notranslate"><span class="pre">folium</span></code>, así como imágenes u otros recursos estáticos que desees mostrar en tu sitio.</p>
+</section>
+<section id="archivo-config-yml">
+<h4>⚙️ Archivo <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code><a class="headerlink" href="#archivo-config-yml" title="Link to this heading">#</a></h4>
+<p>Este archivo es <strong>obligatorio</strong> para que Jekyll procese correctamente tu sitio.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>remote_theme:<span class="w"> </span>pages-themes/cayman@v0.2.0
+plugins:
+<span class="w">  </span>-<span class="w"> </span>jekyll-remote-theme<span class="w"> </span><span class="c1"># puedes cambiar conforme el repositorio del tema de tu elección</span>
+
+title:<span class="w"> </span>Mapa<span class="w"> </span>interactivo
+description:<span class="w"> </span>Este<span class="w"> </span>es<span class="w"> </span>un<span class="w"> </span>proyecto<span class="w"> </span>que<span class="w"> </span>muestra<span class="w"> </span>visualizaciones<span class="w"> </span>con<span class="w"> </span>mapitas.
+
+include:
+<span class="w">  </span>-<span class="w"> </span>assets/mymap_darks.html
+</pre></div>
+</div>
+<p>Puedes cambiar el tema según el que más te guste. Aquí usamos el tema <code class="docutils literal notranslate"><span class="pre">Cayman</span></code>.</p>
+<p>Te comparto la <a class="reference external" href="https://pages.github.com/themes/">lista oficial de temas</a>.</p>
+</section>
+<section id="archivo-index-md">
+<h4>⚙️ Archivo <code class="docutils literal notranslate"><span class="pre">index.md</span></code><a class="headerlink" href="#archivo-index-md" title="Link to this heading">#</a></h4>
+<p>Este será el contenido principal visible en tu sitio. Aquí tienes un ejemplo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>---
+layout:<span class="w"> </span>default
+title:<span class="w"> </span>Mapa<span class="w"> </span>Interactivo
+---
+
+<span class="c1"># Bienvenido</span>
+
+Este<span class="w"> </span>proyecto<span class="w"> </span>muestra<span class="w"> </span>un<span class="w"> </span>**mapa<span class="w"> </span>de<span class="w"> </span>calor**<span class="w"> </span>interactivo<span class="w"> </span>de<span class="w"> </span>ciertos<span class="w"> </span>puntos<span class="w"> </span>geográficos<span class="w"> </span>en<span class="w"> </span>la<span class="w"> </span>ciudad<span class="w"> </span>de<span class="w"> </span>Guadalajara.
+Fue<span class="w"> </span>generado<span class="w"> </span>con<span class="w"> </span>**Python**<span class="w"> </span>usando<span class="w"> </span>la<span class="w"> </span>librería<span class="w"> </span><span class="sb">`</span>folium<span class="sb">`</span>,<span class="w"> </span>y<span class="w"> </span>desplegado<span class="w"> </span>con<span class="w"> </span>**GitHub<span class="w"> </span>Pages**<span class="w"> </span>usando<span class="w"> </span><span class="sb">`</span>Jekyll<span class="sb">`</span>.
+
+<span class="c1">## ¿Qué representa este mapa?</span>
+
+Este<span class="w"> </span>mapa<span class="w"> </span>permite<span class="w"> </span>visualizar<span class="w"> </span>concentraciones<span class="w"> </span>de<span class="w"> </span>datos<span class="w"> </span>geográficos,<span class="w"> </span>el<span class="w"> </span>tema<span class="w"> </span>es:
+
+-<span class="w"> </span>Centros<span class="w"> </span>culturales
+
+La<span class="w"> </span>intensidad<span class="w"> </span>del<span class="w"> </span>color<span class="w"> </span>indica<span class="w"> </span>la<span class="w"> </span>densidad<span class="w"> </span>de<span class="w"> </span>puntos<span class="w"> </span>en<span class="w"> </span>esa<span class="w"> </span>zona.
+
+Puedes<span class="w"> </span>visualizarlo<span class="w"> </span>aquí
+
+&lt;iframe<span class="w"> </span><span class="nv">src</span><span class="o">=</span><span class="s2">&quot;/mapai.github.io/assets/mymap_darks.html&quot;</span>
+<span class="w">        </span><span class="nv">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="s2">&quot;800&quot;</span>
+<span class="w">        </span><span class="nv">style</span><span class="o">=</span><span class="s2">&quot;border: none; max-width: 100%;&quot;</span>&gt;
+&lt;/iframe&gt;
+
+<span class="c1">## Gráfico: Sitios culturales por tipo</span>
+
+&lt;iframe<span class="w"> </span><span class="nv">src</span><span class="o">=</span><span class="s2">&quot;/mapai.github.io/assets/tipos_culturales.html&quot;</span>
+<span class="w">        </span><span class="nv">width</span><span class="o">=</span><span class="s2">&quot;100%&quot;</span><span class="w"> </span><span class="nv">height</span><span class="o">=</span><span class="s2">&quot;600&quot;</span><span class="w"> </span><span class="nv">style</span><span class="o">=</span><span class="s2">&quot;border:none;&quot;</span>&gt;&lt;/iframe&gt;
+
+<span class="c1">## Tecnologías utilizadas</span>
+
+-<span class="w"> </span><span class="o">[</span>Folium<span class="o">](</span>https://python-visualization.github.io/folium/<span class="o">)</span><span class="w"> </span>para<span class="w"> </span>crear<span class="w"> </span>el<span class="w"> </span>mapa<span class="w"> </span>interactivo
+-<span class="w"> </span><span class="o">[</span>Leaflet.js<span class="o">](</span>https://leafletjs.com/<span class="o">)</span><span class="w"> </span>como<span class="w"> </span>motor<span class="w"> </span>de<span class="w"> </span>mapas
+-<span class="w"> </span><span class="o">[</span>GitHub<span class="w"> </span>Pages<span class="o">](</span>https://pages.github.com/<span class="o">)</span><span class="w"> </span>para<span class="w"> </span>hospedar<span class="w"> </span>este<span class="w"> </span>sitio
+-<span class="w"> </span>Tema<span class="w"> </span>de<span class="w"> </span>Jekyll:<span class="w"> </span><span class="sb">`</span>minimal<span class="sb">`</span>
+</pre></div>
+</div>
+<div class="admonition-ojo admonition">
+<p class="admonition-title">Ojo</p>
+<p>Los mapas se integran mediante <strong>iframes</strong>. Solo necesitas que los archivos <code class="docutils literal notranslate"><span class="pre">.html</span></code> estén dentro de la carpeta <code class="docutils literal notranslate"><span class="pre">assets/</span></code> y hacer referencia a ellos desde tu Markdown.</p>
+</div>
+<p>Este es un ejemplo muy simple, pero ideal si estás dando tus primeros pasos.
+Te animo a experimentar, personalizar y descubrir todo lo que puedes hacer con estas herramientas.</p>
+<p>Si quieres llevar tu sitio al siguiente nivel, aquí tienes la documentación oficial de <a class="reference external" href="https://jekyllrb.com/docs/themes/">Jekyll</a> para explorar opciones más avanzadas y profesionales 🚀.</p>
+</section>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="modulo7.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">🔹 Sesión 7</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="modulo9.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">🔹 Sesión 9</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publicar-mapas-interactivos-en-la-web">Publicar mapas interactivos en la web</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-necesitas">¿Qué necesitas?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opcion-1-publicar-usando-solo-el-navegador-sin-terminal">Opción 1: Publicar usando solo el navegador (sin terminal)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crear-un-repositorio">1. Crear un repositorio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#subir-el-archivo-mapa-html">2. Subir el archivo <code class="docutils literal notranslate"><span class="pre">mapa.html</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#activar-github-pages">3. Activar GitHub Pages</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#opcion-2-publicar-usando-git-y-la-terminal">Opción 2: Publicar usando Git y la terminal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sigue-el-paso-numero-1-de-opcion-1">1. Sigue el paso número 1 de Opción 1</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sigue-el-paso-3-de-la-opcion-1">2. Sigue el paso 3 de la Opción 1</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pro-tip">Pro Tip 🔥🔥🔥</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usando-github-pages-jekyll">Usando GitHub Pages + Jekyll</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#carpeta-assets">📁 Carpeta assets</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-config-yml">⚙️ Archivo <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#archivo-index-md">⚙️ Archivo <code class="docutils literal notranslate"><span class="pre">index.md</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By MCD. Patricia Muñoz
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
