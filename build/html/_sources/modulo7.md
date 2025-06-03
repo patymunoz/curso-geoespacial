@@ -55,7 +55,7 @@ Formato: `GeoJson`
 
 Finalmente, trabajaremos con datos provenientes de [GPWv4 (Gridded Population of the World)](https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=975) y un recorte de una capa proveniente de [Natural Earth](https://www.naturalearthdata.com/downloads/110m-cultural-vectors/). Sin embargo, este archivo que te comparto trabajado y listo para descargarlo directamente:
 
-Formato: `TIF`
+Formato: `TIFF`
 
 [![Descargar datos](https://img.shields.io/badge/descargar-datos-orange)](../source/data/poblacion_mexico_1995.tif)
 

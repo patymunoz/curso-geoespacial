@@ -320,7 +320,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -336,6 +338,22 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-openstreetmap">¿Qué es OpenStreetMap?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-clave-de-openstreetmap">Características Clave de OpenStreetMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quien-utiliza-openstreetmap">¿Quién utiliza OpenStreetMap?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osmnx-y-networkx">OSMnx y NetworkX</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionalidades-principales">Funcionalidades principales:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -347,6 +365,69 @@ document.write(`
                   
   <section id="sesion-9">
 <h1>🔹 Sesión 9<a class="headerlink" href="#sesion-9" title="Link to this heading">#</a></h1>
+<section id="que-es-openstreetmap">
+<h2>¿Qué es OpenStreetMap?<a class="headerlink" href="#que-es-openstreetmap" title="Link to this heading">#</a></h2>
+<p><img alt="" src="_images/OpenStreetMap-Mexico.png" /></p>
+<p>En esta sesión aprenderemos cómo descargar y visulizar un <em>red de calles</em> y datos adicionales provenientes de <em>OpenStreetMap</em>.</p>
+<p><strong>OpenStreetMap (OSM)</strong> es un proyecto colaborativo que ofrece un <strong>mapa del mundo gratuito y editable</strong>, construido enteramente por personas voluntarias. A menudo se le describe como la <a class="reference external" href="https://wiki.openstreetmap.org"><em>“Wikipedia de los mapas”</em></a>, ya que cualquier persona puede contribuir con datos geográficos, como carreteras, senderos, edificios y elementos naturales, utilizando dispositivos GPS, imágenes aéreas o conocimiento local.</p>
+<p><a class="reference external" href="https://www.openstreetmap.org/#map=5/23.95/-94.88">Mapa OpenStreetMap</a></p>
+</section>
+<hr class="docutils" />
+<section id="caracteristicas-clave-de-openstreetmap">
+<h2>Características Clave de OpenStreetMap<a class="headerlink" href="#caracteristicas-clave-de-openstreetmap" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Basado en la comunidad <em>(crowd-sourced)</em>:</strong> La comunidad de <em>OpenStreetMap</em> es diversa, apasionada y crece cada día. Nuestros colaboradores incluyen mapeadores entusiastas, profesionales de los SIG, ingenieros asegurando el funcionamiento de los servidores de OSM, personal humanitario que mapean las zonas afectadas por desastres, y muchos más.</p></li>
+<li><p><strong>Libre de uso:</strong> Los datos de OSM son abiertos y gratuitos bajo la <strong>Licencia de Base de Datos Abierta (ODbL)</strong>, lo que significa que puedes usarlos para casi cualquier propósito, incluso comercialmente, siempre que se dé la atribución correspondiente. Consulta la página de <a class="reference external" href="https://www.openstreetmap.org/copyright">derechos de autor y licencia</a> para más detalles.</p></li>
+<li><p><strong>Detalles geográficos ricos:</strong> Incluye calles, ciclovías, edificios, transporte público, parques, tipos de uso del suelo, entre muchos otros.</p></li>
+<li><p><strong>Editable:</strong> Cualquiera puede registrarse en <a class="reference external" href="https://www.openstreetmap.org">www.openstreetmap.org</a> para comenzar a editar y contribuir.</p></li>
+<li><p><strong>Cobertura global:</strong> Desde senderos rurales hasta redes urbanas complejas, su objetivo es proporcionar datos cartográficos completos a nivel mundial.</p></li>
+<li><p><strong>Apoyado por herramientas y comunidad:</strong> Existe un gran ecosistema de herramientas y una comunidad global apasionada que contribuye y mantiene los datos.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="quien-utiliza-openstreetmap">
+<h2>¿Quién utiliza OpenStreetMap?<a class="headerlink" href="#quien-utiliza-openstreetmap" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>Desarrolladores de aplicaciones</strong> (por ejemplo, de navegación, fitness, entregas)</p></li>
+<li><p><strong>Gobiernos y organizaciones humanitarias</strong> (por ejemplo, para respuesta ante desastres)</p></li>
+<li><p><strong>Investigadores y planificadores urbanos</strong></p></li>
+<li><p><strong>Empresas y startups</strong> (por ejemplo, servicios basados en ubicación)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="osmnx-y-networkx">
+<h2>OSMnx y NetworkX<a class="headerlink" href="#osmnx-y-networkx" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><strong>OSMnx</strong>: Módulo de Python que permite <strong>descargar y analizar datos de OpenStreetMap</strong>, especialmente redes de calles. Facilita tareas como obtener mapas urbanos, calcular rutas, analizar pendientes y visualizar estructuras urbanas.</p></li>
+<li><p><strong>NetworkX</strong>: Paquete de Python especializado en el <strong>análisis de grafos y redes</strong>. Se utiliza para representar, manipular y estudiar la topología de redes (por ejemplo, calles como nodos y conexiones como aristas).</p></li>
+</ul>
+<blockquote>
+<div><p>🔗 <strong>OSMnx utiliza NetworkX internamente</strong> para representar las redes de calles descargadas desde OpenStreetMap como grafos, lo que permite aplicar algoritmos de análisis y cálculo sobre estas redes.</p>
+</div></blockquote>
+<section id="funcionalidades-principales">
+<h3>Funcionalidades principales:<a class="headerlink" href="#funcionalidades-principales" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Descargar límites administrativos y huellas de edificios.</p></li>
+<li><p>Automatizar la descarga y construcción de redes viales de OSM en cualquier parte del mundo con múltiples tipos de red (conducción, caminata, etc.).</p></li>
+<li><p>Corrección algorítmica y simplificación de la topología de la red.</p></li>
+<li><p>Descargar datos de elevación y calcular pendientes de calles.</p></li>
+<li><p>Análisis: calcular rutas, proyectar y visualizar, calcular medidas métricas y topológicas.</p></li>
+</ol>
+<p>Boeing, G. 2017. “<a class="reference external" href="https://www.researchgate.net/publication/309738462_OSMNX_New_Methods_for_Acquiring_Constructing_Analyzing_and_Visualizing_Complex_Street_Networks">OSMnx: New Methods for Acquiring, Constructing, Analyzing, and Visualizing Complex Street Networks.</a>” Computers, Environment and Urban Systems 65, 126-139.</p>
+</section>
+</section>
+<section id="datos">
+<h2>Datos<a class="headerlink" href="#datos" title="Link to this heading">#</a></h2>
+<p>Trabajaremos con dos geometrías.</p>
+<p>Formato: <code class="docutils literal notranslate"><span class="pre">GeoJson</span></code></p>
+<p><a class="reference download internal" download="" href="_downloads/fd19cb5c304b49e4419a38d6f78d828c/map.geojson"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-blue" /></span></a></p>
+<p><a class="reference download internal" download="" href="_downloads/7eece4b6f7936107c8e3aaa220d8516c/col_americana.geojson"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-purple" /></span></a></p>
+</section>
+<section id="contenidos-de-esta-sesion">
+<h2>Contenidos de esta sesión<a class="headerlink" href="#contenidos-de-esta-sesion" title="Link to this heading">#</a></h2>
+<p>En esta sesión estaremos trabajando con este cuaderno de trabajo:</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion9.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
+</section>
 </section>
 
 
@@ -384,6 +465,29 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-openstreetmap">¿Qué es OpenStreetMap?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caracteristicas-clave-de-openstreetmap">Características Clave de OpenStreetMap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quien-utiliza-openstreetmap">¿Quién utiliza OpenStreetMap?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osmnx-y-networkx">OSMnx y NetworkX</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionalidades-principales">Funcionalidades principales:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
