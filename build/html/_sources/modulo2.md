@@ -50,14 +50,29 @@ Recuperado de: Wikipedia. (2025). _Well-known text representation of geometry ob
 
 > 🛈 **WKT es ampliamente utilizado** en bibliotecas como `shapely` y bases de datos espaciales como PostGIS, pero **no es la única forma** de representar geometrías.
 
-### Otros formatos comunes para representar geometrías:
+```{admonition} 🎯 ¿Qué representa un WKT?
+:class: note
 
-- **WKB (Well-Known Binary):** versión binaria de WKT, más eficiente para almacenamiento y procesamiento computacional.
-- **GeoJSON:** basado en JSON, ideal para aplicaciones web y APIs.
-- **Shapefile (.shp):** formato binario tradicional muy usado en software SIG como QGIS.
-- **GML / KML:** formatos XML utilizados en entornos interoperables o visualización (como Google Earth).
+Cuando ves un WKT como:
 
-Cada uno de estos formatos tiene ventajas según el contexto de uso: análisis, visualización, almacenamiento o intercambio entre herramientas.
+`POLYGON((0 0, 0 2, 2 2, 2 0, 0 0))`
+
+puede parecer que son solo **números enteros** o una simple lista de puntos. Pero en realidad, este texto **describe un dibujo geométrico**: un polígono cerrado con esquinas en esos puntos (0,0), (0,2), etc.
+
+En *Shapely*, al cargar este WKT con `shapely.wkt.loads()`, estás creando *una figura matemática*, que puedes visualizar, medir (área, perímetro), y analizar (intersecciones, uniones, etc.).
+
+💡 **La clave**: esos números no tienen aún un significado geográfico. Son solo coordenadas *en un espacio abstracto*. Para convertirlos en *coordenadas reales sobre el planeta*, necesitas asociarlos a un **sistema de referencia (CRS)** —como decir “estos puntos están en lat/lon” o “en metros UTM”.
+
+Así, un simple `POLYGON((500000 2100000, ...))` puede convertirse en una ubicación en Sudamérica... si sabes en qué CRS estás trabajando.
+```
+
+```{admonition} WKT: el plano del objeto geométrico
+:class: tip
+
+Puedes pensar en un **WKT** como el **plano arquitectónico** de una geometría: es un texto que describe cómo debe “verse” una figura (punto, línea, polígono) en el espacio.
+
+📐 **Shapely** toma ese plano (WKT) y lo convierte en un **objeto matemático real** con el que puedes hacer cálculos, análisis o visualizaciones.
+```
 
 ## Shapely
 

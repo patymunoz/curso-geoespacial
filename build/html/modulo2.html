@@ -343,10 +343,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-formatos-comunes-para-representar-geometrias">Otros formatos comunes para representar geometrías:</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shapely">Shapely</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
 </ul>
@@ -425,16 +422,20 @@ document.write(`
 <blockquote>
 <div><p>🛈 <strong>WKT es ampliamente utilizado</strong> en bibliotecas como <code class="docutils literal notranslate"><span class="pre">shapely</span></code> y bases de datos espaciales como PostGIS, pero <strong>no es la única forma</strong> de representar geometrías.</p>
 </div></blockquote>
-<section id="otros-formatos-comunes-para-representar-geometrias">
-<h3>Otros formatos comunes para representar geometrías:<a class="headerlink" href="#otros-formatos-comunes-para-representar-geometrias" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p><strong>WKB (Well-Known Binary):</strong> versión binaria de WKT, más eficiente para almacenamiento y procesamiento computacional.</p></li>
-<li><p><strong>GeoJSON:</strong> basado en JSON, ideal para aplicaciones web y APIs.</p></li>
-<li><p><strong>Shapefile (.shp):</strong> formato binario tradicional muy usado en software SIG como QGIS.</p></li>
-<li><p><strong>GML / KML:</strong> formatos XML utilizados en entornos interoperables o visualización (como Google Earth).</p></li>
-</ul>
-<p>Cada uno de estos formatos tiene ventajas según el contexto de uso: análisis, visualización, almacenamiento o intercambio entre herramientas.</p>
-</section>
+<div class="note admonition">
+<p class="admonition-title">🎯 ¿Qué representa un WKT?</p>
+<p>Cuando ves un WKT como:</p>
+<p><code class="docutils literal notranslate"><span class="pre">POLYGON((0</span> <span class="pre">0,</span> <span class="pre">0</span> <span class="pre">2,</span> <span class="pre">2</span> <span class="pre">2,</span> <span class="pre">2</span> <span class="pre">0,</span> <span class="pre">0</span> <span class="pre">0))</span></code></p>
+<p>puede parecer que son solo <strong>números enteros</strong> o una simple lista de puntos. Pero en realidad, este texto <strong>describe un dibujo geométrico</strong>: un polígono cerrado con esquinas en esos puntos (0,0), (0,2), etc.</p>
+<p>En <em>Shapely</em>, al cargar este WKT con <code class="docutils literal notranslate"><span class="pre">shapely.wkt.loads()</span></code>, estás creando <em>una figura matemática</em>, que puedes visualizar, medir (área, perímetro), y analizar (intersecciones, uniones, etc.).</p>
+<p>💡 <strong>La clave</strong>: esos números no tienen aún un significado geográfico. Son solo coordenadas <em>en un espacio abstracto</em>. Para convertirlos en <em>coordenadas reales sobre el planeta</em>, necesitas asociarlos a un <strong>sistema de referencia (CRS)</strong> —como decir “estos puntos están en lat/lon” o “en metros UTM”.</p>
+<p>Así, un simple <code class="docutils literal notranslate"><span class="pre">POLYGON((500000</span> <span class="pre">2100000,</span> <span class="pre">...))</span></code> puede convertirse en una ubicación en Sudamérica… si sabes en qué CRS estás trabajando.</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">WKT: el plano del objeto geométrico</p>
+<p>Puedes pensar en un <strong>WKT</strong> como el <strong>plano arquitectónico</strong> de una geometría: es un texto que describe cómo debe “verse” una figura (punto, línea, polígono) en el espacio.</p>
+<p>📐 <strong>Shapely</strong> toma ese plano (WKT) y lo convierte en un <strong>objeto matemático real</strong> con el que puedes hacer cálculos, análisis o visualizaciones.</p>
+</div>
 </section>
 <section id="shapely">
 <h2>Shapely<a class="headerlink" href="#shapely" title="Link to this heading">#</a></h2>
@@ -496,10 +497,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otros-formatos-comunes-para-representar-geometrias">Otros formatos comunes para representar geometrías:</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shapely">Shapely</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
 </ul>
