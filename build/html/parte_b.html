@@ -177,6 +177,9 @@
 <li class="toctree-l1"><a class="reference internal" href="modulo5.html">🔹 Sesión 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo6.html">🔹 Sesión 6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo7.html">🔹 Sesión 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo8.html">🔹 Sesión 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo9.html">🔹 Sesión 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo10.html">🔹 Sesión 10</a></li>
 </ul>
 
     </div>
@@ -362,7 +365,10 @@ document.write(`
 </section>
 <section id="estructuras-condicionales">
 <h2>Estructuras condicionales<a class="headerlink" href="#estructuras-condicionales" title="Link to this heading">#</a></h2>
-<p>Las estructuras condicionales permiten tomar decisiones en función de ciertas condiciones. En Python, las estructuras condicionales más comunes son <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code> y <code class="docutils literal notranslate"><span class="pre">elif</span></code>. A continuación se presentan algunos ejemplos prácticos:</p>
+<p>Las estructuras condicionales permiten tomar decisiones en función de ciertas condiciones. En Python, las estructuras condicionales más comunes son <code class="docutils literal notranslate"><span class="pre">if</span></code>, <code class="docutils literal notranslate"><span class="pre">else</span></code> y <code class="docutils literal notranslate"><span class="pre">elif</span></code>.</p>
+<p><img alt="" src="_images/ifelif.png" /></p>
+<p><strong>Figura 1.</strong> Diagrama de flujo de una estructura condicional <code class="docutils literal notranslate"><span class="pre">if</span></code>–<code class="docutils literal notranslate"><span class="pre">elif</span></code>–<code class="docutils literal notranslate"><span class="pre">else</span></code> en Python. El flujo de ejecución comienza en una condición inicial; si es verdadera, se ejecuta el bloque <code class="docutils literal notranslate"><span class="pre">if</span></code>. Si es falsa, se evalúa una segunda condición para el bloque <code class="docutils literal notranslate"><span class="pre">elif</span></code>, y si también resulta falsa, se ejecuta el bloque <code class="docutils literal notranslate"><span class="pre">else</span></code>. Al final, todos los caminos convergen en el cierre del flujo.</p>
+<p>A continuación se presentan algunos ejemplos prácticos:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Estructura if</span>
 <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
 
@@ -389,6 +395,8 @@ document.write(`
 <section id="ciclos">
 <h2>Ciclos<a class="headerlink" href="#ciclos" title="Link to this heading">#</a></h2>
 <p>Los ciclos (o bucles) permiten ejecutar un bloque de código repetidamente mientras se cumpla una condición o al recorrer una secuencia. En Python, los ciclos más utilizados son <code class="docutils literal notranslate"><span class="pre">for</span></code> y <code class="docutils literal notranslate"><span class="pre">while</span></code>.</p>
+<p><img alt="" src="_images/forloop.png" /></p>
+<p><strong>Figura 2.</strong> Diagrama de flujo de un bucle <code class="docutils literal notranslate"><span class="pre">for</span></code> en Python. Mientras haya elementos por iterar, se ejecutan las instrucciones del bloque. Cuando ya no quedan elementos, se sale del bucle y continúa el flujo del programa.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ciclo for</span>
 <span class="n">numeros</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 
@@ -404,6 +412,8 @@ document.write(`
 </pre></div>
 </div>
 <p>Este ciclo <code class="docutils literal notranslate"><span class="pre">for</span></code> recorre cada elemento de la lista numeros e imprime su valor uno por uno.</p>
+<p><img alt="" src="_images/whileloop.png" /></p>
+<p><strong>Figura 3.</strong> Diagrama de flujo de un bucle <code class="docutils literal notranslate"><span class="pre">while</span></code> en Python. Mientras la condición sea verdadera, se ejecuta el cuerpo del ciclo. Cuando la condición resulta falsa, se sale del bucle y el programa continúa su ejecución.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ciclo while</span>
 <span class="n">contador</span> <span class="o">=</span> <span class="mi">0</span>
 

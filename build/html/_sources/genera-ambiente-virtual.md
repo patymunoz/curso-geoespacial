@@ -1,8 +1,18 @@
 # 🔹 Ambiente virtual local
 
-Para trabajar de forma ordenada y reproducible en tus proyectos con Python y datos geoespaciales, es importante crear un ambiente virtual que contenga solamente las bibliotecas necesarias.
+Para trabajar de forma ordenada y reproducible en tus proyectos con Python y datos geoespaciales, es fundamental configurar correctamente tu entorno de trabajo. Una buena práctica es crear un ambiente virtual que contenga únicamente las bibliotecas necesarias para cada proyecto.
 
-A continuación, te mostramos cómo hacerlo paso a paso.
+Una de las formas más recomendables de hacerlo es utilizando **Anaconda**, una distribución de Python pensada especialmente para la ciencia de datos. Anaconda facilita la instalación y gestión de bibliotecas complejas, como las que se utilizan en el análisis geoespacial, además de ofrecer una terminal propia y entornos virtuales integrados.
+
+También es importante considerar qué **IDE** (entorno de desarrollo integrado) vas a utilizar _—por ejemplo, JupyterLab, VS Code o Spyder—_ y asegurarte de que esté correctamente configurado para trabajar con tu ambiente virtual y la terminal de Anaconda. Todos estos elementos forman parte del setup inicial que facilitará tu flujo de trabajo.
+
+A continuación, te muestro cómo generar tu _ambiente virtual desde la terminal de Anaconda_ paso a paso.
+
+```{admonition} Optativo
+:class: warning
+
+Este paso es completamente opcional. Puedes decidir si lo realizas o no según tus intereses y tu nivel de experiencia en programación, ya que se trata de un tema avanzado.
+```
 
 ---
 
@@ -18,7 +28,7 @@ Un ambiente virtual te permite:
 
 ## 2. Crear un ambiente con Conda
 
-Si estás utilizando **Anaconda** o **Miniconda**, puedes crear un ambiente con:
+Si estás utilizando **Anaconda** o **Miniconda**, puedes crear un ambiente desde la terminal de _Anaconda_ con:
 
 ```bash
 conda create -n geo_env python=3.13

@@ -1,8 +1,8 @@
 # 🔹 Bibliotecas útiles
 
-En esta sección te presentamos un conjunto de bibliotecas muy utilizadas en el ecosistema Python para análisis de datos y trabajo con información geoespacial. Estas herramientas te permitirán trabajar con datos espaciales de forma programática, reproducible y eficiente.
+En esta sección te presentamos un conjunto de bibliotecas muy utilizadas en el ecosistema Python para análisis de datos y trabajo con información geoespacial. Estas herramientas te permitirán trabajar con datos espaciales.
 
-Cuando empieces a usarlas en tus propios proyectos, es recomendable consultar su documentación oficial.
+Cuando empieces a usarlas en tus propios proyectos, es recomendable consultar su _documentación oficial_.
 
 ---
 

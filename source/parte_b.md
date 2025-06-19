@@ -6,7 +6,13 @@ En la sección anterior, exploramos conceptos fundamentales del lenguaje Python,
 
 ## Estructuras condicionales
 
-Las estructuras condicionales permiten tomar decisiones en función de ciertas condiciones. En Python, las estructuras condicionales más comunes son `if`, `else` y `elif`. A continuación se presentan algunos ejemplos prácticos:
+Las estructuras condicionales permiten tomar decisiones en función de ciertas condiciones. En Python, las estructuras condicionales más comunes son `if`, `else` y `elif`.
+
+![](../source/images/ifelif.png)
+
+**Figura 1.** Diagrama de flujo de una estructura condicional `if`–`elif`–`else` en Python. El flujo de ejecución comienza en una condición inicial; si es verdadera, se ejecuta el bloque `if`. Si es falsa, se evalúa una segunda condición para el bloque `elif`, y si también resulta falsa, se ejecuta el bloque `else`. Al final, todos los caminos convergen en el cierre del flujo.
+
+A continuación se presentan algunos ejemplos prácticos:
 
 ```python
 # Estructura if
@@ -38,6 +44,10 @@ Aquí se imprimirá `"x es igual a 10"` ya que la condición `x == 10` es verdad
 
 Los ciclos (o bucles) permiten ejecutar un bloque de código repetidamente mientras se cumpla una condición o al recorrer una secuencia. En Python, los ciclos más utilizados son `for` y `while`.
 
+![](../source/images/forloop.png)
+
+**Figura 2.** Diagrama de flujo de un bucle `for` en Python. Mientras haya elementos por iterar, se ejecutan las instrucciones del bloque. Cuando ya no quedan elementos, se sale del bucle y continúa el flujo del programa.
+
 ```python
 # Ciclo for
 numeros = [1, 2, 3, 4, 5]
@@ -53,6 +63,10 @@ for numero in numeros:
     5
 
 Este ciclo `for` recorre cada elemento de la lista numeros e imprime su valor uno por uno.
+
+![](../source/images/whileloop.png)
+
+**Figura 3.** Diagrama de flujo de un bucle `while` en Python. Mientras la condición sea verdadera, se ejecuta el cuerpo del ciclo. Cuando la condición resulta falsa, se sale del bucle y el programa continúa su ejecución.
 
 ```python
 # Ciclo while

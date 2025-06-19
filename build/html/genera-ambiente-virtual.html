@@ -177,6 +177,9 @@
 <li class="toctree-l1"><a class="reference internal" href="modulo5.html">🔹 Sesión 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo6.html">🔹 Sesión 6</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo7.html">🔹 Sesión 7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo8.html">🔹 Sesión 8</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo9.html">🔹 Sesión 9</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modulo10.html">🔹 Sesión 10</a></li>
 </ul>
 
     </div>
@@ -359,8 +362,14 @@ document.write(`
                   
   <section id="ambiente-virtual-local">
 <h1>🔹 Ambiente virtual local<a class="headerlink" href="#ambiente-virtual-local" title="Link to this heading">#</a></h1>
-<p>Para trabajar de forma ordenada y reproducible en tus proyectos con Python y datos geoespaciales, es importante crear un ambiente virtual que contenga solamente las bibliotecas necesarias.</p>
-<p>A continuación, te mostramos cómo hacerlo paso a paso.</p>
+<p>Para trabajar de forma ordenada y reproducible en tus proyectos con Python y datos geoespaciales, es fundamental configurar correctamente tu entorno de trabajo. Una buena práctica es crear un ambiente virtual que contenga únicamente las bibliotecas necesarias para cada proyecto.</p>
+<p>Una de las formas más recomendables de hacerlo es utilizando <strong>Anaconda</strong>, una distribución de Python pensada especialmente para la ciencia de datos. Anaconda facilita la instalación y gestión de bibliotecas complejas, como las que se utilizan en el análisis geoespacial, además de ofrecer una terminal propia y entornos virtuales integrados.</p>
+<p>También es importante considerar qué <strong>IDE</strong> (entorno de desarrollo integrado) vas a utilizar <em>—por ejemplo, JupyterLab, VS Code o Spyder—</em> y asegurarte de que esté correctamente configurado para trabajar con tu ambiente virtual y la terminal de Anaconda. Todos estos elementos forman parte del setup inicial que facilitará tu flujo de trabajo.</p>
+<p>A continuación, te muestro cómo generar tu <em>ambiente virtual desde la terminal de Anaconda</em> paso a paso.</p>
+<div class="warning admonition">
+<p class="admonition-title">Optativo</p>
+<p>Este paso es completamente opcional. Puedes decidir si lo realizas o no según tus intereses y tu nivel de experiencia en programación, ya que se trata de un tema avanzado.</p>
+</div>
 <hr class="docutils" />
 <section id="por-que-usar-un-ambiente-virtual">
 <h2>1. ¿Por qué usar un ambiente virtual?<a class="headerlink" href="#por-que-usar-un-ambiente-virtual" title="Link to this heading">#</a></h2>
@@ -374,7 +383,7 @@ document.write(`
 <hr class="docutils" />
 <section id="crear-un-ambiente-con-conda">
 <h2>2. Crear un ambiente con Conda<a class="headerlink" href="#crear-un-ambiente-con-conda" title="Link to this heading">#</a></h2>
-<p>Si estás utilizando <strong>Anaconda</strong> o <strong>Miniconda</strong>, puedes crear un ambiente con:</p>
+<p>Si estás utilizando <strong>Anaconda</strong> o <strong>Miniconda</strong>, puedes crear un ambiente desde la terminal de <em>Anaconda</em> con:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>geo_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.13
 </pre></div>
 </div>

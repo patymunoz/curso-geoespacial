@@ -4,9 +4,14 @@
 
 En este capítulo, introducimos los conceptos básicos, operadores y estructuras de datos en Python.
 
-Python es un lenguaje de programación, interpretado y de propósito general. Es conocido por su simplicidad y legibilidad. Python es ampliamente utilizado en diversas áreas, incluyendo desarrollo web, análisis de datos, inteligencia artificial y automatización de tareas.
+Python es un lenguaje de programación, interpretado[^1] y de propósito general[^2]. Es conocido por su simplicidad y legibilidad. Python es ampliamente utilizado en diversas áreas, incluyendo desarrollo web, análisis de datos, inteligencia artificial y automatización de tareas.
 
 ![Lenguajes de programación para análisis y ciencia de datos.](images/p-languages.png)
+
+**Figura 1.** Lenguajes y tecnologías comunes en ciencia de datos y análisis computacional.
+
+[^1]: Interpretado significa que no requiere compilación previa.
+[^2]: Propósito general significa que no está limitado a un solo tipo de aplicación.
 
 ## Variables y asignación
 
@@ -76,6 +81,10 @@ sort([3, 1, 2])
     [1, 2, 3]
 
 Construir una función es una forma de encapsular un bloque de código que puede ser reutilizado en diferentes partes del script. Las funciones pueden recibir argumentos y devolver resultados.
+
+![](../source/images/fx.png)
+
+**Figura 2.** Anatomía de una función en Python. Se destacan los elementos clave: palabra reservada `def`, nombre y parámetros de la función, la cadena de documentación (_docstring_), el cuerpo de la función y la instrucción `return`. Cada parte está identificada para facilitar su comprensión.
 
 En este curso no profundizaremos en la construcción de funciones, pero te dejo por acá la [documentación oficial de Python](https://docs.python.org/3/tutorial/controlflow.html#defining-functions) para que puedas consultarla.
 

@@ -36,6 +36,4 @@
 
   Explorarás y trabajarás con datos de OpenStreetMap para enriquecer tus análisis espaciales.
 
-- #### [Sesión 10 - ArcPy](../source/modulo10.md)
-
-  Aprenderás a usar ArcPy para automatizar tareas en ArcGIS Pro.
+- #### [Sesión 10 - ](../source/modulo10.md)

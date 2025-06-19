@@ -6,7 +6,7 @@ project = 'Manejo de datos geoespaciales en Python'
 author = 'MCD. Patricia Muñoz'
 release = '0.1'
 
-extensions = ['myst_parser', 'nbsphinx']
+extensions = ['myst_parser', 'nbsphinx', 'sphinx.ext.mathjax']
 
 myst_enable_extensions = [
     "colon_fence"
