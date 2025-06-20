@@ -13,11 +13,11 @@ Los datos geoespaciales se pueden dividir en dos categorías principales:
 
 En los próximos tres capítulos, abordaremos los fundamentos de trabajar con el primer tipo, las _capas vectoriales_, en Python. En esta sesión cubrimos el paquete `shapely`, que se utiliza para representar y trabajar con _geometrías vectoriales individuales_.
 
-Las _geometrías individuales_ dentro de una capa vectorial se almacenan como geometrías de `shapely`. Así que es importante familiarizarse con este paquete antes de pasar a trabajar con _capas vectoriales_ completas.
+Las _geometrías individuales_ (_Simple Features_) dentro de una capa vectorial se almacenan como geometrías de `shapely`. Así que es importante familiarizarse con este paquete antes de pasar a trabajar con _capas vectoriales_ completas.
 
 !['Tipos de geometrías'](images/simple_feature_types.svg)
 
-Recuperado de: Dorman, M. (2025). _Geometries (Shapely)._ En _Spatial Data Programming with Python._
+**Figura 1.** Recuperado de: Dorman, M. (2025). _Geometries (Shapely)._ En _Spatial Data Programming with Python._
 
 ```{admonition} ¿Qué es una geometría individual?
 
@@ -32,7 +32,7 @@ Una **geometría individual** es una representación única de una forma geomét
 - `GeometryCollection`: una colección que puede incluir cualquier combinación de los tipos anteriores.
 ```
 
-Una forma común de representar estas geometrías es mediante el formato **WKT (Well-Known Text)**, un lenguaje de marcado en texto plano que describe el tipo de geometría y sus coordenadas.
+Un estándar para representar estas geometrías es mediante el formato **WKT (Well-Known Text)**, es un formato de texto plano estructurado, usado para describir objetos geométricos de forma estandarizada y legible por humanos y máquinas conforme al estándar _Simple Features._
 
 Por ejemplo:
 
@@ -48,7 +48,17 @@ Por ejemplo:
 
 Recuperado de: Wikipedia. (2025). _Well-known text representation of geometry objects._ En [Wikipedia](https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry).
 
-> 🛈 **WKT es ampliamente utilizado** en bibliotecas como `shapely` y bases de datos espaciales como PostGIS, pero **no es la única forma** de representar geometrías.
+> 🛈 **WKT es ampliamente utilizado** en bibliotecas como `shapely` y bases de datos espaciales como PostGIS, porque es un estándar abierto, legible y fácil de intercambiar entre sistemas.
+
+También es utilizado en otros entornos como:
+
+- GeoServer (para WFS)
+
+- GDAL/OGR
+
+- QGIS (al exportar geometrías)
+
+- APIs REST geoespaciales
 
 ```{admonition} 🎯 ¿Qué representa un WKT?
 :class: note
@@ -74,6 +84,26 @@ Puedes pensar en un **WKT** como el **plano arquitectónico** de una geometría:
 📐 **Shapely** toma ese plano (WKT) y lo convierte en un **objeto matemático real** con el que puedes hacer cálculos, análisis o visualizaciones.
 ```
 
+![](../source/images/geoms.png)
+
+**Figura 2.** Relación entre el modelo de geometrías espaciales del OGC (Simple Features), su representación visual, y las distintas formas de codificación interoperable (WKT, WKB, GeoJSON)
+
+### Otras formas de codificar geometrías según _Simple features_
+
+Además de WKT, existen otros formatos estandarizados que permiten codificar geometrías para su uso e intercambio entre sistemas:
+
+#### WKB (Well-Known Binary)
+
+Formato binario definido por el OGC para representar geometrías de forma compacta y eficiente. Es útil cuando se necesita reducir el tamaño de almacenamiento o transmitir datos por red.
+
+![](../source/images/wkb.png)
+
+#### GeoJSON
+
+Formato basado en JSON ampliamente usado en aplicaciones web y APIs. Permite representar geometrías junto con propiedades (atributos) y, en algunos casos, especificar un CRS. GeoJSON es legible por humanos y fácilmente integrable con bibliotecas como Leaflet, Mapbox o GeoPandas.
+
+![](../source/images/geosjon1.png)
+
 ## Shapely
 
 `shapely` es una biblioteca de Python para trabajar con geometrías vectoriales, es decir, el _componente geométrico_ de las capas vectoriales (el otro componente son los atributos no espaciales).
@@ -81,6 +111,19 @@ Puedes pensar en un **WKT** como el **plano arquitectónico** de una geometría:
 `shapely` es una interfaz de Python para la biblioteca de geometría `GEOS` (Geometry Engine - Open Source), que es una biblioteca de C++. `GEOS` es la biblioteca de geometría subyacente utilizada por muchos sistemas de información geográfica (SIG) de código abierto y bibliotecas de análisis espacial, como `PostGIS`, `GDAL`, `GeoPandas`, `QGIS`, entre otros.
 
 La [documentación](https://shapely.readthedocs.io/en/stable/manual.html) de `shapely` es muy completa y contiene ejemplos de uso.
+
+### Atributos vs. métodos en `shapely`
+
+Al trabajar con objetos geométricos en `shapely`, es importante entender la diferencia entre **atributos** y **métodos**, ya que ambos son formas de interactuar con las geometrías, pero funcionan de manera distinta.
+
+| Tipo         | ¿Qué es?                         | ¿Cómo se usa?       | ¿Ejemplo?                      |
+| ------------ | -------------------------------- | ------------------- | ------------------------------ |
+| **Atributo** | Una propiedad del objeto         | Sin paréntesis      | `.area`, `.bounds`, `.length`  |
+| **Método**   | Una acción que realiza el objeto | Con paréntesis `()` | `.intersects()`, `.contains()` |
+
+Los `atributos` permiten acceder a información descriptiva de la geometría, como su área o sus límites.
+
+Los `métodos` permiten realizar operaciones espaciales como calcular distancias, verificar relaciones topológicas o modificar la geometría.
 
 ## Contenidos de esta sesión
 

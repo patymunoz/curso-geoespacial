@@ -343,8 +343,18 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shapely">Shapely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-formas-de-codificar-geometrias-segun-simple-features">Otras formas de codificar geometrías según <em>Simple features</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wkb-well-known-binary">WKB (Well-Known Binary)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geojson">GeoJSON</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shapely">Shapely</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-vs-metodos-en-shapely">Atributos vs. métodos en <code class="docutils literal notranslate"><span class="pre">shapely</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
 </ul>
             </nav>
@@ -369,9 +379,9 @@ document.write(`
 <li><p>Capas de datos ráster</p></li>
 </ul>
 <p>En los próximos tres capítulos, abordaremos los fundamentos de trabajar con el primer tipo, las <em>capas vectoriales</em>, en Python. En esta sesión cubrimos el paquete <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, que se utiliza para representar y trabajar con <em>geometrías vectoriales individuales</em>.</p>
-<p>Las <em>geometrías individuales</em> dentro de una capa vectorial se almacenan como geometrías de <code class="docutils literal notranslate"><span class="pre">shapely</span></code>. Así que es importante familiarizarse con este paquete antes de pasar a trabajar con <em>capas vectoriales</em> completas.</p>
+<p>Las <em>geometrías individuales</em> (<em>Simple Features</em>) dentro de una capa vectorial se almacenan como geometrías de <code class="docutils literal notranslate"><span class="pre">shapely</span></code>. Así que es importante familiarizarse con este paquete antes de pasar a trabajar con <em>capas vectoriales</em> completas.</p>
 <p><img alt="'Tipos de geometrías'" src="_images/simple_feature_types.svg" /></p>
-<p>Recuperado de: Dorman, M. (2025). <em>Geometries (Shapely).</em> En <em>Spatial Data Programming with Python.</em></p>
+<p><strong>Figura 1.</strong> Recuperado de: Dorman, M. (2025). <em>Geometries (Shapely).</em> En <em>Spatial Data Programming with Python.</em></p>
 <div class="admonition-que-es-una-geometria-individual admonition">
 <p class="admonition-title">¿Qué es una geometría individual?</p>
 <p>Una <strong>geometría individual</strong> es una representación única de una forma geométrica, definida según los <a class="reference external" href="https://en.wikipedia.org/wiki/Simple_Features">tipos establecidos en la especificación <em>Simple Features</em></a>. Esta especificación contempla al menos 17 tipos de geometrías, aunque en la práctica se utilizan comúnmente solo 7. Estas son:</p>
@@ -385,7 +395,7 @@ document.write(`
 <li><p><code class="docutils literal notranslate"><span class="pre">GeometryCollection</span></code>: una colección que puede incluir cualquier combinación de los tipos anteriores.</p></li>
 </ul>
 </div>
-<p>Una forma común de representar estas geometrías es mediante el formato <strong>WKT (Well-Known Text)</strong>, un lenguaje de marcado en texto plano que describe el tipo de geometría y sus coordenadas.</p>
+<p>Un estándar para representar estas geometrías es mediante el formato <strong>WKT (Well-Known Text)</strong>, es un formato de texto plano estructurado, usado para describir objetos geométricos de forma estandarizada y legible por humanos y máquinas conforme al estándar <em>Simple Features.</em></p>
 <p>Por ejemplo:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -420,8 +430,15 @@ document.write(`
 </div>
 <p>Recuperado de: Wikipedia. (2025). <em>Well-known text representation of geometry objects.</em> En <a class="reference external" href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Wikipedia</a>.</p>
 <blockquote>
-<div><p>🛈 <strong>WKT es ampliamente utilizado</strong> en bibliotecas como <code class="docutils literal notranslate"><span class="pre">shapely</span></code> y bases de datos espaciales como PostGIS, pero <strong>no es la única forma</strong> de representar geometrías.</p>
+<div><p>🛈 <strong>WKT es ampliamente utilizado</strong> en bibliotecas como <code class="docutils literal notranslate"><span class="pre">shapely</span></code> y bases de datos espaciales como PostGIS, porque es un estándar abierto, legible y fácil de intercambiar entre sistemas.</p>
 </div></blockquote>
+<p>También es utilizado en otros entornos como:</p>
+<ul class="simple">
+<li><p>GeoServer (para WFS)</p></li>
+<li><p>GDAL/OGR</p></li>
+<li><p>QGIS (al exportar geometrías)</p></li>
+<li><p>APIs REST geoespaciales</p></li>
+</ul>
 <div class="note admonition">
 <p class="admonition-title">🎯 ¿Qué representa un WKT?</p>
 <p>Cuando ves un WKT como:</p>
@@ -436,12 +453,56 @@ document.write(`
 <p>Puedes pensar en un <strong>WKT</strong> como el <strong>plano arquitectónico</strong> de una geometría: es un texto que describe cómo debe “verse” una figura (punto, línea, polígono) en el espacio.</p>
 <p>📐 <strong>Shapely</strong> toma ese plano (WKT) y lo convierte en un <strong>objeto matemático real</strong> con el que puedes hacer cálculos, análisis o visualizaciones.</p>
 </div>
+<p><img alt="" src="_images/geoms.png" /></p>
+<p><strong>Figura 2.</strong> Relación entre el modelo de geometrías espaciales del OGC (Simple Features), su representación visual, y las distintas formas de codificación interoperable (WKT, WKB, GeoJSON)</p>
+<section id="otras-formas-de-codificar-geometrias-segun-simple-features">
+<h3>Otras formas de codificar geometrías según <em>Simple features</em><a class="headerlink" href="#otras-formas-de-codificar-geometrias-segun-simple-features" title="Link to this heading">#</a></h3>
+<p>Además de WKT, existen otros formatos estandarizados que permiten codificar geometrías para su uso e intercambio entre sistemas:</p>
+<section id="wkb-well-known-binary">
+<h4>WKB (Well-Known Binary)<a class="headerlink" href="#wkb-well-known-binary" title="Link to this heading">#</a></h4>
+<p>Formato binario definido por el OGC para representar geometrías de forma compacta y eficiente. Es útil cuando se necesita reducir el tamaño de almacenamiento o transmitir datos por red.</p>
+<p><img alt="" src="_images/wkb.png" /></p>
+</section>
+<section id="geojson">
+<h4>GeoJSON<a class="headerlink" href="#geojson" title="Link to this heading">#</a></h4>
+<p>Formato basado en JSON ampliamente usado en aplicaciones web y APIs. Permite representar geometrías junto con propiedades (atributos) y, en algunos casos, especificar un CRS. GeoJSON es legible por humanos y fácilmente integrable con bibliotecas como Leaflet, Mapbox o GeoPandas.</p>
+<p><img alt="" src="_images/geosjon1.png" /></p>
+</section>
+</section>
 </section>
 <section id="shapely">
 <h2>Shapely<a class="headerlink" href="#shapely" title="Link to this heading">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">shapely</span></code> es una biblioteca de Python para trabajar con geometrías vectoriales, es decir, el <em>componente geométrico</em> de las capas vectoriales (el otro componente son los atributos no espaciales).</p>
 <p><code class="docutils literal notranslate"><span class="pre">shapely</span></code> es una interfaz de Python para la biblioteca de geometría <code class="docutils literal notranslate"><span class="pre">GEOS</span></code> (Geometry Engine - Open Source), que es una biblioteca de C++. <code class="docutils literal notranslate"><span class="pre">GEOS</span></code> es la biblioteca de geometría subyacente utilizada por muchos sistemas de información geográfica (SIG) de código abierto y bibliotecas de análisis espacial, como <code class="docutils literal notranslate"><span class="pre">PostGIS</span></code>, <code class="docutils literal notranslate"><span class="pre">GDAL</span></code>, <code class="docutils literal notranslate"><span class="pre">GeoPandas</span></code>, <code class="docutils literal notranslate"><span class="pre">QGIS</span></code>, entre otros.</p>
 <p>La <a class="reference external" href="https://shapely.readthedocs.io/en/stable/manual.html">documentación</a> de <code class="docutils literal notranslate"><span class="pre">shapely</span></code> es muy completa y contiene ejemplos de uso.</p>
+<section id="atributos-vs-metodos-en-shapely">
+<h3>Atributos vs. métodos en <code class="docutils literal notranslate"><span class="pre">shapely</span></code><a class="headerlink" href="#atributos-vs-metodos-en-shapely" title="Link to this heading">#</a></h3>
+<p>Al trabajar con objetos geométricos en <code class="docutils literal notranslate"><span class="pre">shapely</span></code>, es importante entender la diferencia entre <strong>atributos</strong> y <strong>métodos</strong>, ya que ambos son formas de interactuar con las geometrías, pero funcionan de manera distinta.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tipo</p></th>
+<th class="head"><p>¿Qué es?</p></th>
+<th class="head"><p>¿Cómo se usa?</p></th>
+<th class="head"><p>¿Ejemplo?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Atributo</strong></p></td>
+<td><p>Una propiedad del objeto</p></td>
+<td><p>Sin paréntesis</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.area</span></code>, <code class="docutils literal notranslate"><span class="pre">.bounds</span></code>, <code class="docutils literal notranslate"><span class="pre">.length</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Método</strong></p></td>
+<td><p>Una acción que realiza el objeto</p></td>
+<td><p>Con paréntesis <code class="docutils literal notranslate"><span class="pre">()</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">.intersects()</span></code>, <code class="docutils literal notranslate"><span class="pre">.contains()</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Los <code class="docutils literal notranslate"><span class="pre">atributos</span></code> permiten acceder a información descriptiva de la geometría, como su área o sus límites.</p>
+<p>Los <code class="docutils literal notranslate"><span class="pre">métodos</span></code> permiten realizar operaciones espaciales como calcular distancias, verificar relaciones topológicas o modificar la geometría.</p>
+</section>
 </section>
 <section id="contenidos-de-esta-sesion">
 <h2>Contenidos de esta sesión<a class="headerlink" href="#contenidos-de-esta-sesion" title="Link to this heading">#</a></h2>
@@ -497,8 +558,18 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shapely">Shapely</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#otras-formas-de-codificar-geometrias-segun-simple-features">Otras formas de codificar geometrías según <em>Simple features</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#wkb-well-known-binary">WKB (Well-Known Binary)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#geojson">GeoJSON</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shapely">Shapely</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#atributos-vs-metodos-en-shapely">Atributos vs. métodos en <code class="docutils literal notranslate"><span class="pre">shapely</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contenidos-de-esta-sesion">Contenidos de esta sesión</a></li>
 </ul>
   </nav></div>
