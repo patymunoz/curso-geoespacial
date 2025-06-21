@@ -23,25 +23,47 @@ Entre los geocoders más conocidos se encuentran:
 
 ```
 
+> Lista de geocoders obtenida de [GeoPy](https://geopy.readthedocs.io/en/stable/#geocoders).
+
 ![Geocoders](../source/images/geocoders.png)
 
 **Figura 1.** Ejemplos de servicios que proveen servicios de geocodificación. Elaboración propia.
 
-Actualmente existe una amplia variedad de servicios de geocodificación. Las principales diferencias entre ellos —además del modelo de precios— radican en la calidad y cobertura de sus datos. Por ejemplo, una dirección puede estar correctamente registrada en Google Maps pero no en Bing o Carto, y viceversa.
+Actualmente existe una amplia variedad de servicios de geocodificación. Las principales diferencias entre ellos —además del modelo de precios— radican en la _calidad_ y _cobertura de sus datos_. Por ejemplo, una dirección puede estar correctamente registrada en Google Maps, pero no en Bing o Carto y viceversa.
 
 #### Consideraciones técnicas
 
 La mayoría de estos servicios requieren una API key para su uso, lo que implica que debes registrarte en sus plataformas para obtener acceso. Además, suelen establecer límites de uso, como un número máximo de peticiones por segundo o por día, lo cual es importante tener en cuenta para evitar errores o bloqueos al procesar grandes volúmenes de datos.
 
+```{admonition} 🔧 ¿Qué es una API?
+:class: tip
+
+Una **API** (_Application Programming Interface_) es una interfaz que permite que tu código se comunique con servicios externos, como plataformas de mapas, geocodificación o imágenes satelitales.
+```
+
+## Geopy
+
+`geopy` actúa como un **puente común** entre Python y diversos servicios de geocodificación como Google Maps, OpenStreetMap (Nominatim), Carto, y ArcGIS.
+
+- Implementa internamente la lógica para conectarse a cada proveedor.
+- Nosotros solo usamos una interfaz (`geopy.geocoders`) y elegimos el servicio que queremos.
+- Los resultados pueden integrarse directamente con `pandas` para procesar múltiples direcciones.
+
+Esto permite cambiar de proveedor sin tener que reescribir todo el código.
+
+![](../source/images/flujo-geopy.png)
+
+**Figura 2.** Flujo de trabajo de geocodificación con `geopy`. Elaboración propia.
+
 Para más información sobre el uso de geopy con pandas, puedes consultar su [documentación oficial](https://geopy.readthedocs.io/en/stable/#usage-with-pandas).
 
-## Uso de Nominatim (OpenStreetMaps)
+## Uso de _Nominatim_ (OpenStreetMaps)
 
-En esta sesión utilizaremos el servicio _Nominatim_, proporcionado por OpenStreetMap. Este geocodificador es gratuito y no requiere de una API key, aunque sí impone restricciones en la frecuencia de peticiones: **solo se permite una petición por segundo.** Puedes revisar las políticas de uso en [este enlace](https://operations.osmfoundation.org/policies/nominatim/).
+En esta sesión utilizaremos el servicio _Nominatim_, proporcionado por OpenStreetMap. Este geocodificador es gratuito y no requiere de una _API key_, aunque sí impone restricciones en la frecuencia de peticiones: **solo se permite una petición por segundo.** Puedes revisar las políticas de uso en [este enlace](https://operations.osmfoundation.org/policies/nominatim/).
 
 ```{admonition} Batch Geocoding
 
-Ten en cuenta que el envío masivo de solicitudes o la repetición frecuente de la misma consulta puede considerarse uso indebido, lo que podría conllevar al bloqueo del acceso al servicio.
+Ten en cuenta que el envío masivo de solicitudes o la repetición frecuente de la misma consulta puede considerarse **uso indebido**, lo que podría conllevar al bloqueo del acceso al servicio.
 ```
 
 Una consideración importante al utilizar _Nominatim_ es el uso del parámetro `user_agent`. Este parámetro es **obligatorio** y se utiliza para identificarnos ante el servicio, indicando quién está realizando las peticiones.
@@ -60,13 +82,13 @@ Por ejemplo, podríamos querer unir una capa de puntos (como estaciones meteorol
 
 ```{admonition} Tipos de relaciones espaciales
 :class_tip
-- **intersects**: selecciona elementos que se cruzan o tocan espacialmente.
-- **within**: selecciona elementos que están completamente contenidos dentro del otro.
-- **contains**: selecciona elementos que contienen completamente al otro.
+- **intersects**: selecciona las entidades que se _superponen parcial o totalmente_ con la entidad de entrada.
+- **within**: una entidad está _dentro_ de otra si se encuentra completamente contenida por ella (es decir, **A está dentro de B**).
+- **contains**: una entidad _contiene_ a otra si esta se encuentra completamente dentro de sus límites (es decir, **B contiene a A**).
 
-- **touches**: selecciona elementos que tocan el borde del otro.
-- **crosses**: selecciona elementos que cruzan el otro, es decir, comparten parte de su geometría pero no están completamente contenidos.
-- **overlaps**: selecciona elementos que se superponen parcialmente, es decir, comparten parte de su geometría pero no están completamente contenidos ni contienen al otro.
+- **touches**: una entidad _toca_ a la entidad de entrada si comparten un vértice (punto de contacto), pero no se sobreponen.
+- **crosses**: una entidad _cruza_ a la entidad de entrada si la intersección contiene solo puntos y al menos uno es interno para ambas.
+- **overlaps**: una entidad se _sobrepone_ a la entidad de entrada si comparten parte de la geometría y son del mismo tipo.
 ```
 
 ![](../source/images/spatial-joins.png)
@@ -114,6 +136,8 @@ Y, finalmente capa de Colonias de Jalisco proveniente del [Instituto de Informac
 
 [![Descargar datos](https://img.shields.io/badge/descargar-datos-yellow)](../source/data/colonias_iieg.zip)
 
+> 🚀 Este es el mismo conjunto de datos que utilizamos en la sesión 2, así que si ya lo descargaste y lo guardaste en tu Google Drive, no es necesario que lo descargues nuevamente. Puedes usar la misma ruta de acceso.
+
 ## Contenidos de esta sesión
 
 En esta sesión estaremos trabajando con este cuaderno de trabajo:
@@ -123,6 +147,12 @@ En esta sesión estaremos trabajando con este cuaderno de trabajo:
 #### Código compartido
 
 Abre [este archivo](../source/codigo-sesion4.md) y copia el código cuando la profesora te lo indique 🙏🏾
+
+## Extra: Geocodificación con Google Maps
+
+Al finalizar el taller, tienes disponible un cuaderno para practicar lo aprendido:
+
+[![Abrir en Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion4_practica.ipynb)
 
 ## Extra: Google Maps' trick
 

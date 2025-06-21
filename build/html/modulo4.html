@@ -347,7 +347,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-tecnicas">Consideraciones técnicas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-nominatim-openstreetmaps">Uso de Nominatim (OpenStreetMaps)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geopy">Geopy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-nominatim-openstreetmaps">Uso de <em>Nominatim</em> (OpenStreetMaps)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-joins-uniones-espaciales">Spatial Joins (Uniones espaciales)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-vecinos-mas-cercanos">Análisis de vecinos más cercanos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
@@ -355,6 +356,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-compartido">Código compartido</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-geocodificacion-con-google-maps">Extra: Geocodificación con Google Maps</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-google-maps-trick">Extra: Google Maps’ trick</a></li>
 </ul>
             </nav>
@@ -387,21 +389,40 @@ document.write(`
 <li><p><a class="reference external" href="https://carto.com/geocoding">Carto</a></p></li>
 </ul>
 </div>
+<blockquote>
+<div><p>Lista de geocoders obtenida de <a class="reference external" href="https://geopy.readthedocs.io/en/stable/#geocoders">GeoPy</a>.</p>
+</div></blockquote>
 <p><img alt="Geocoders" src="_images/geocoders.png" /></p>
 <p><strong>Figura 1.</strong> Ejemplos de servicios que proveen servicios de geocodificación. Elaboración propia.</p>
-<p>Actualmente existe una amplia variedad de servicios de geocodificación. Las principales diferencias entre ellos —además del modelo de precios— radican en la calidad y cobertura de sus datos. Por ejemplo, una dirección puede estar correctamente registrada en Google Maps pero no en Bing o Carto, y viceversa.</p>
+<p>Actualmente existe una amplia variedad de servicios de geocodificación. Las principales diferencias entre ellos —además del modelo de precios— radican en la <em>calidad</em> y <em>cobertura de sus datos</em>. Por ejemplo, una dirección puede estar correctamente registrada en Google Maps, pero no en Bing o Carto y viceversa.</p>
 <section id="consideraciones-tecnicas">
 <h3>Consideraciones técnicas<a class="headerlink" href="#consideraciones-tecnicas" title="Link to this heading">#</a></h3>
 <p>La mayoría de estos servicios requieren una API key para su uso, lo que implica que debes registrarte en sus plataformas para obtener acceso. Además, suelen establecer límites de uso, como un número máximo de peticiones por segundo o por día, lo cual es importante tener en cuenta para evitar errores o bloqueos al procesar grandes volúmenes de datos.</p>
+<div class="tip admonition">
+<p class="admonition-title">🔧 ¿Qué es una API?</p>
+<p>Una <strong>API</strong> (<em>Application Programming Interface</em>) es una interfaz que permite que tu código se comunique con servicios externos, como plataformas de mapas, geocodificación o imágenes satelitales.</p>
+</div>
+</section>
+</section>
+<section id="geopy">
+<h2>Geopy<a class="headerlink" href="#geopy" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">geopy</span></code> actúa como un <strong>puente común</strong> entre Python y diversos servicios de geocodificación como Google Maps, OpenStreetMap (Nominatim), Carto, y ArcGIS.</p>
+<ul class="simple">
+<li><p>Implementa internamente la lógica para conectarse a cada proveedor.</p></li>
+<li><p>Nosotros solo usamos una interfaz (<code class="docutils literal notranslate"><span class="pre">geopy.geocoders</span></code>) y elegimos el servicio que queremos.</p></li>
+<li><p>Los resultados pueden integrarse directamente con <code class="docutils literal notranslate"><span class="pre">pandas</span></code> para procesar múltiples direcciones.</p></li>
+</ul>
+<p>Esto permite cambiar de proveedor sin tener que reescribir todo el código.</p>
+<p><img alt="" src="_images/flujo-geopy.png" /></p>
+<p><strong>Figura 2.</strong> Flujo de trabajo de geocodificación con <code class="docutils literal notranslate"><span class="pre">geopy</span></code>. Elaboración propia.</p>
 <p>Para más información sobre el uso de geopy con pandas, puedes consultar su <a class="reference external" href="https://geopy.readthedocs.io/en/stable/#usage-with-pandas">documentación oficial</a>.</p>
 </section>
-</section>
 <section id="uso-de-nominatim-openstreetmaps">
-<h2>Uso de Nominatim (OpenStreetMaps)<a class="headerlink" href="#uso-de-nominatim-openstreetmaps" title="Link to this heading">#</a></h2>
-<p>En esta sesión utilizaremos el servicio <em>Nominatim</em>, proporcionado por OpenStreetMap. Este geocodificador es gratuito y no requiere de una API key, aunque sí impone restricciones en la frecuencia de peticiones: <strong>solo se permite una petición por segundo.</strong> Puedes revisar las políticas de uso en <a class="reference external" href="https://operations.osmfoundation.org/policies/nominatim/">este enlace</a>.</p>
+<h2>Uso de <em>Nominatim</em> (OpenStreetMaps)<a class="headerlink" href="#uso-de-nominatim-openstreetmaps" title="Link to this heading">#</a></h2>
+<p>En esta sesión utilizaremos el servicio <em>Nominatim</em>, proporcionado por OpenStreetMap. Este geocodificador es gratuito y no requiere de una <em>API key</em>, aunque sí impone restricciones en la frecuencia de peticiones: <strong>solo se permite una petición por segundo.</strong> Puedes revisar las políticas de uso en <a class="reference external" href="https://operations.osmfoundation.org/policies/nominatim/">este enlace</a>.</p>
 <div class="admonition-batch-geocoding admonition">
 <p class="admonition-title">Batch Geocoding</p>
-<p>Ten en cuenta que el envío masivo de solicitudes o la repetición frecuente de la misma consulta puede considerarse uso indebido, lo que podría conllevar al bloqueo del acceso al servicio.</p>
+<p>Ten en cuenta que el envío masivo de solicitudes o la repetición frecuente de la misma consulta puede considerarse <strong>uso indebido</strong>, lo que podría conllevar al bloqueo del acceso al servicio.</p>
 </div>
 <p>Una consideración importante al utilizar <em>Nominatim</em> es el uso del parámetro <code class="docutils literal notranslate"><span class="pre">user_agent</span></code>. Este parámetro es <strong>obligatorio</strong> y se utiliza para identificarnos ante el servicio, indicando quién está realizando las peticiones.</p>
 <p><img alt="" src="_images/nominatim.png" /></p>
@@ -415,12 +436,12 @@ document.write(`
 <div class="admonition-tipos-de-relaciones-espaciales admonition">
 <p class="admonition-title">Tipos de relaciones espaciales</p>
 <ul class="simple">
-<li><p><strong>intersects</strong>: selecciona elementos que se cruzan o tocan espacialmente.</p></li>
-<li><p><strong>within</strong>: selecciona elementos que están completamente contenidos dentro del otro.</p></li>
-<li><p><strong>contains</strong>: selecciona elementos que contienen completamente al otro.</p></li>
-<li><p><strong>touches</strong>: selecciona elementos que tocan el borde del otro.</p></li>
-<li><p><strong>crosses</strong>: selecciona elementos que cruzan el otro, es decir, comparten parte de su geometría pero no están completamente contenidos.</p></li>
-<li><p><strong>overlaps</strong>: selecciona elementos que se superponen parcialmente, es decir, comparten parte de su geometría pero no están completamente contenidos ni contienen al otro.</p></li>
+<li><p><strong>intersects</strong>: selecciona las entidades que se <em>superponen parcial o totalmente</em> con la entidad de entrada.</p></li>
+<li><p><strong>within</strong>: una entidad está <em>dentro</em> de otra si se encuentra completamente contenida por ella (es decir, <strong>A está dentro de B</strong>).</p></li>
+<li><p><strong>contains</strong>: una entidad <em>contiene</em> a otra si esta se encuentra completamente dentro de sus límites (es decir, <strong>B contiene a A</strong>).</p></li>
+<li><p><strong>touches</strong>: una entidad <em>toca</em> a la entidad de entrada si comparten un vértice (punto de contacto), pero no se sobreponen.</p></li>
+<li><p><strong>crosses</strong>: una entidad <em>cruza</em> a la entidad de entrada si la intersección contiene solo puntos y al menos uno es interno para ambas.</p></li>
+<li><p><strong>overlaps</strong>: una entidad se <em>sobrepone</em> a la entidad de entrada si comparten parte de la geometría y son del mismo tipo.</p></li>
 </ul>
 </div>
 <p><img alt="" src="_images/spatial-joins.png" /></p>
@@ -455,6 +476,9 @@ document.write(`
 <p><a class="reference download internal" download="" href="_downloads/b980138ef104810aaed65edbd432b73f/metropolitana.zip"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-blue" /></span></a></p>
 <p>Y, finalmente capa de Colonias de Jalisco proveniente del <a class="reference external" href="https://iieg.gob.mx/ns/?page_id=881">Instituto de Información Estadística y Geográfica de Jalisco (IIEG)</a>:</p>
 <p><a class="reference download internal" download="" href="_downloads/a2252f1b047724591372ebeba90ef02f/colonias_iieg.zip"><span class="xref download myst"><img alt="Descargar datos" src="https://img.shields.io/badge/descargar-datos-yellow" /></span></a></p>
+<blockquote>
+<div><p>🚀 Este es el mismo conjunto de datos que utilizamos en la sesión 2, así que si ya lo descargaste y lo guardaste en tu Google Drive, no es necesario que lo descargues nuevamente. Puedes usar la misma ruta de acceso.</p>
+</div></blockquote>
 </section>
 <section id="contenidos-de-esta-sesion">
 <h2>Contenidos de esta sesión<a class="headerlink" href="#contenidos-de-esta-sesion" title="Link to this heading">#</a></h2>
@@ -464,6 +488,11 @@ document.write(`
 <h3>Código compartido<a class="headerlink" href="#codigo-compartido" title="Link to this heading">#</a></h3>
 <p>Abre <a class="reference internal" href="codigo-sesion4.html"><span class="std std-doc">este archivo</span></a> y copia el código cuando la profesora te lo indique 🙏🏾</p>
 </section>
+</section>
+<section id="extra-geocodificacion-con-google-maps">
+<h2>Extra: Geocodificación con Google Maps<a class="headerlink" href="#extra-geocodificacion-con-google-maps" title="Link to this heading">#</a></h2>
+<p>Al finalizar el taller, tienes disponible un cuaderno para practicar lo aprendido:</p>
+<p><a class="reference external" href="https://colab.research.google.com/github/patymunoz/curso-geoespacial/blob/main/notebooks/sesion4_practica.ipynb"><img alt="Abrir en Colab" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 </section>
 <section id="extra-google-maps-trick">
 <h2>Extra: Google Maps’ trick<a class="headerlink" href="#extra-google-maps-trick" title="Link to this heading">#</a></h2>
@@ -521,7 +550,8 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-tecnicas">Consideraciones técnicas</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-nominatim-openstreetmaps">Uso de Nominatim (OpenStreetMaps)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geopy">Geopy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#uso-de-nominatim-openstreetmaps">Uso de <em>Nominatim</em> (OpenStreetMaps)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spatial-joins-uniones-espaciales">Spatial Joins (Uniones espaciales)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-vecinos-mas-cercanos">Análisis de vecinos más cercanos</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datos">Datos</a></li>
@@ -529,6 +559,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#codigo-compartido">Código compartido</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-geocodificacion-con-google-maps">Extra: Geocodificación con Google Maps</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#extra-google-maps-trick">Extra: Google Maps’ trick</a></li>
 </ul>
   </nav></div>
