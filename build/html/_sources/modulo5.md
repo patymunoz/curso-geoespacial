@@ -1,10 +1,15 @@
 # 🔹 Sesión 5
 
+```{admonition} Antes de iniciar...
+
+[Click aquí](https://docs.google.com/forms/d/e/1FAIpQLScycxos-GgWz2YWV18ciHjgLhNek5Fg-pA0dU957h0SRZFsDg/viewform?usp=dialog)
+```
+
 En esta sesión exploraremos el concepto de **reclasificación de datos**. Para esto, utilizaremos datos de uso del suelo y vegetación, así como imágenes satelitales.
 
 ## Reclasificación de datos
 
-En análisis GIS (Geographic Information Systems), trabajamos con datos espaciales, como mapas de uso del suelo, elevación, clima, etc. **Reclasificar datos** significa tomar un conjunto de valores existentes y agruparlos, simplificarlos o convertirlos en nuevas categorías según ciertos criterios.
+En el análisis SIG, la _reclasificación de datos_ consiste en transformar un conjunto de valores existentes para agruparlos, simplificarlos o asignarlos a nuevas categorías, de acuerdo con criterios específicos. Esta técnica permite facilitar la interpretación y el análisis de la información espacial.
 
 ```{admonition} Ejemplo práctico
 :class: tip
@@ -13,18 +18,16 @@ Imagina que tienes un mapa de elevación con valores de altitud entre 0 y 3,000 
 - 501-1,500 m --> categoría 2 (media altitud)
 - 1,501-3,000 m --> categoría 3 (alta altitud)
 
-Esto facilita el análisis posterior, como por ejemplo, estudia qué zonas están en riesgo de inundación (aquellas más probables en baja altitud).
+Esta reclasificación facilita el análisis espacial. Por ejemplo, te permite identificar rápidamente las zonas con mayor riesgo de inundación (más probables en áreas de baja altitud).
 ```
 
-Pero también ayuda a clasificación información basada en satisfacer criterios, por ejemplo:
-
-Estamos interesadas en indetificar los siguientes criterios:
+Además de simplificar la interpretación, la reclasificación también permite ajustar los datos según ciertos criterios de interés. Por ejemplo, si queremos identificar áreas que cumplan con los siguientes requisitos:
 
 - **Zonas de elevación altas**
 - **Zonas cercanas a parques**
-- **Zonas alejadas de carreteras ruidosdas**
+- **Zonas alejadas de carreteras ruidosas**
 
-Para lograr esto, podemos reclasificar los datos de elevación, uso del suelo y carreteras, asignando categorías específicas en conjunto.
+Podemos reclasificar capas como elevación, uso del suelo y red vial, asignando categorías específicas a cada una. Luego, al combinar esas capas reclasificadas, es posible identificar las zonas que satisfacen todos los criterios establecidos.
 
 #### `mapclassify` de PySAL
 

@@ -368,10 +368,14 @@ document.write(`
                   
   <section id="sesion-5">
 <h1>🔹 Sesión 5<a class="headerlink" href="#sesion-5" title="Link to this heading">#</a></h1>
+<div class="admonition-antes-de-iniciar admonition">
+<p class="admonition-title">Antes de iniciar…</p>
+<p><a class="reference external" href="https://docs.google.com/forms/d/e/1FAIpQLScycxos-GgWz2YWV18ciHjgLhNek5Fg-pA0dU957h0SRZFsDg/viewform?usp=dialog">Click aquí</a></p>
+</div>
 <p>En esta sesión exploraremos el concepto de <strong>reclasificación de datos</strong>. Para esto, utilizaremos datos de uso del suelo y vegetación, así como imágenes satelitales.</p>
 <section id="reclasificacion-de-datos">
 <h2>Reclasificación de datos<a class="headerlink" href="#reclasificacion-de-datos" title="Link to this heading">#</a></h2>
-<p>En análisis GIS (Geographic Information Systems), trabajamos con datos espaciales, como mapas de uso del suelo, elevación, clima, etc. <strong>Reclasificar datos</strong> significa tomar un conjunto de valores existentes y agruparlos, simplificarlos o convertirlos en nuevas categorías según ciertos criterios.</p>
+<p>En el análisis SIG, la <em>reclasificación de datos</em> consiste en transformar un conjunto de valores existentes para agruparlos, simplificarlos o asignarlos a nuevas categorías, de acuerdo con criterios específicos. Esta técnica permite facilitar la interpretación y el análisis de la información espacial.</p>
 <div class="tip admonition">
 <p class="admonition-title">Ejemplo práctico</p>
 <p>Imagina que tienes un mapa de elevación con valores de altitud entre 0 y 3,000 metros. Puedes reclasificarlo así:</p>
@@ -380,16 +384,15 @@ document.write(`
 <li><p>501-1,500 m –&gt; categoría 2 (media altitud)</p></li>
 <li><p>1,501-3,000 m –&gt; categoría 3 (alta altitud)</p></li>
 </ul>
-<p>Esto facilita el análisis posterior, como por ejemplo, estudia qué zonas están en riesgo de inundación (aquellas más probables en baja altitud).</p>
+<p>Esta reclasificación facilita el análisis espacial. Por ejemplo, te permite identificar rápidamente las zonas con mayor riesgo de inundación (más probables en áreas de baja altitud).</p>
 </div>
-<p>Pero también ayuda a clasificación información basada en satisfacer criterios, por ejemplo:</p>
-<p>Estamos interesadas en indetificar los siguientes criterios:</p>
+<p>Además de simplificar la interpretación, la reclasificación también permite ajustar los datos según ciertos criterios de interés. Por ejemplo, si queremos identificar áreas que cumplan con los siguientes requisitos:</p>
 <ul class="simple">
 <li><p><strong>Zonas de elevación altas</strong></p></li>
 <li><p><strong>Zonas cercanas a parques</strong></p></li>
-<li><p><strong>Zonas alejadas de carreteras ruidosdas</strong></p></li>
+<li><p><strong>Zonas alejadas de carreteras ruidosas</strong></p></li>
 </ul>
-<p>Para lograr esto, podemos reclasificar los datos de elevación, uso del suelo y carreteras, asignando categorías específicas en conjunto.</p>
+<p>Podemos reclasificar capas como elevación, uso del suelo y red vial, asignando categorías específicas a cada una. Luego, al combinar esas capas reclasificadas, es posible identificar las zonas que satisfacen todos los criterios establecidos.</p>
 <section id="mapclassify-de-pysal">
 <h3><code class="docutils literal notranslate"><span class="pre">mapclassify</span></code> de PySAL<a class="headerlink" href="#mapclassify-de-pysal" title="Link to this heading">#</a></h3>
 <p>En mapas temáticos (como los mapas de coropletas), clasificamos datos numéricos en grupos o clases para visualizar mejor patrones geográficos (por ejemplo, niveles de ingreso por región). Cada clasificador define cómo se agrupan esos valores.</p>
