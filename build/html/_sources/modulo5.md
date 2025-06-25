@@ -33,7 +33,7 @@ Podemos reclasificar capas como elevación, uso del suelo y red vial, asignando 
 
 En mapas temáticos (como los mapas de coropletas), clasificamos datos numéricos en grupos o clases para visualizar mejor patrones geográficos (por ejemplo, niveles de ingreso por región). Cada clasificador define cómo se agrupan esos valores.
 
-Aquí te comparto solo algunos de los clasificadores más usados y que, de hecho, puedes usar también en ArcGis Pro y QGIS, ya que vienen incluidos en sus herramientas de análisis:
+Aquí te comparto solo algunos de los _clasificadores_ más usados y que, de hecho, puedes usar también en ArcGis Pro y QGIS, ya que vienen incluidos en sus herramientas de análisis:
 
 📊 Clasificadores más usados en mapas temáticos
 

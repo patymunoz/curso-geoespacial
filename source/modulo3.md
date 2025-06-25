@@ -32,24 +32,47 @@ Las estrucutras de datos de `geopandas` son:
 
 ## Sistema de Coordenadas de Referencia (CRS)
 
-El **Sistema de Coordenadas de Referencia** (_CRS_) es fundamental para ubicar correctamente los datos geoespaciales. Sin un CRS definido, los objetos _no tienen una posición significativa en el espacio_, lo que los hace arbitrarios.
+Un **CRS** (Sistema de Coordenadas de Referencia) es esencial para ubicar datos geográficos correctamente en el espacio. Sin un CRS, los datos no "saben" dónde están.
 
-Un CRS especifica:
+#### ¿Cómo representamos la Tierra?
 
-- Cómo se representa la _forma_ de la Tierra (a través de un datum, como WGS84)
-- Y opcionalmente, cómo se _proyectan esas coordenadas_ sobre un plano bidimensional (si es proyectado)
+La Tierra no es perfectamente redonda: es irregular. Para ubicar cosas sobre ella, usamos un modelo matemático llamado **datum**.
 
-Una **proyección de mapa** es el proceso mediante el cual las coordenadas esféricas de latitud y longitud se transforman en coordenadas planas (x, y), utilizando unidades como `metros` o `grados`, dependiendo del tipo de CRS.
+> **Datum** = Modelo matemático que representa la forma y tamaño de la Tierra.
 
-Los CRS se dividen en dos grupos principales:
+##### 🔸 Ejemplos de datum:
 
-- **CRS geográficos**: trabajan directamente con _latitud y longitud_ en unidades de **grados** (por ejemplo, [WGS84](https://epsg.io/4326))
+- **WGS84**: el más común, usado por el GPS.
 
-- **CRS proyectados**: representan la Tierra sobre un plano usando unidades de distancia real (como **metros**) y aplican una proyección cartográfica (por ejemplo, [UTM Zona 14N](https://epsg.io/32614), [ITRF2008 / UTM zone 13N](https://epsg.io/6368))
+- **ITRF2008**: muy preciso, usado en geodesia y estudios de movimiento tectónico.
 
-En México, uno de los sistemas más comunes para trabajos cartográficos es el sistema **UTM**, dividido en zonas como la 13N y 14N, basadas en el datum `WGS84`. Para aplicaciones geodésicas de alta precisión, también puede usarse el sistema `ITRF` (por ejemplo, ITRF2008).
+#### ¿Qué es una proyección?
 
-La forma más sencilla y común de especificar un CRS es a través del código **EPSG**, que es un identificador estándar. A continuación se presentan algunos CRS relevantes para México:
+Una **proyección cartográfica** convierte coordenadas sobre la superficie curva de la Tierra a un plano.
+
+Cada proyección prioriza diferentes aspectos: _área, forma, distancia o dirección._
+
+##### 🔸 Ejemplos de proyección:
+
+- **Mercator**: conserva formas, pero exagera tamaños cerca de los polos.
+
+- **UTM**: divide el mundo en zonas para minimizar distorsión regional.
+
+#### ¿Qué es UTM?
+
+**UTM (Universal Transverse Mercator)** es un sistema de proyección que divide la Tierra en zonas numeradas.
+
+> 📌 _Piensa en columnas verticales sobre el globo. Cada una tiene su propio sistema de coordenadas en metros._
+
+- México usa comúnmente las zonas **13N y 14N**.
+
+- Las coordenadas están en **metros**, no en grados.
+
+#### ¿Qué es un código EPSG?
+
+**EPSG** es un código numérico estandarizado que identifica un sistema de coordenadas completo: _datum + proyección + unidad + zona._
+
+> 📌 _Como si cada mapa tuviera un número de serie o "ID"._
 
 **Tabla: Sistemas de Coordenadas de Referencia (CRS) comunes en México**
 
@@ -64,6 +87,14 @@ La forma más sencilla y común de especificar un CRS es a través del código *
 | [UTM zona 16N (WGS84)](https://epsg.io/32616) | Proyectado | Metros (m)           | 32616       |
 
 Los **CRS geográficos** abarcan toda la superficie terrestre y utilizan coordenadas angulares (grados), mientras que los **CRS proyectados** representan áreas más pequeñas con coordenadas en unidades lineales (metros), lo que permite realizar cálculos geométricos como distancias y áreas.
+
+#### ¿Qué es el ITRF?
+
+**ITRF** (International Terrestrial Reference Frame) es un marco de referencia muy preciso usado en geodesia.
+
+> 🛰 Incluye modelos de movimiento de placas tectónicas, por eso también considera el **tiempo**.
+
+- **ITRF2008** o **ITRF2014** se usan cuando se necesita gran exactitud espacial y temporal.
 
 ### Ejemplo reales de CRS en herramientas geoespaciales
 

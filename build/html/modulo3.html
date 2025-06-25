@@ -345,6 +345,17 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-coordenadas-de-referencia-crs">Sistema de Coordenadas de Referencia (CRS)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-representamos-la-tierra">¿Cómo representamos la Tierra?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-datum">🔸 Ejemplos de datum:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-una-proyeccion">¿Qué es una proyección?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-proyeccion">🔸 Ejemplos de proyección:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-utm">¿Qué es UTM?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-codigo-epsg">¿Qué es un código EPSG?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-el-itrf">¿Qué es el ITRF?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-reales-de-crs-en-herramientas-geoespaciales">Ejemplo reales de CRS en herramientas geoespaciales</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gps">🛰️ GPS</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#google-maps">Google Maps</a></li>
@@ -395,20 +406,50 @@ document.write(`
 </section>
 <section id="sistema-de-coordenadas-de-referencia-crs">
 <h2>Sistema de Coordenadas de Referencia (CRS)<a class="headerlink" href="#sistema-de-coordenadas-de-referencia-crs" title="Link to this heading">#</a></h2>
-<p>El <strong>Sistema de Coordenadas de Referencia</strong> (<em>CRS</em>) es fundamental para ubicar correctamente los datos geoespaciales. Sin un CRS definido, los objetos <em>no tienen una posición significativa en el espacio</em>, lo que los hace arbitrarios.</p>
-<p>Un CRS especifica:</p>
+<p>Un <strong>CRS</strong> (Sistema de Coordenadas de Referencia) es esencial para ubicar datos geográficos correctamente en el espacio. Sin un CRS, los datos no “saben” dónde están.</p>
+<section id="como-representamos-la-tierra">
+<h3>¿Cómo representamos la Tierra?<a class="headerlink" href="#como-representamos-la-tierra" title="Link to this heading">#</a></h3>
+<p>La Tierra no es perfectamente redonda: es irregular. Para ubicar cosas sobre ella, usamos un modelo matemático llamado <strong>datum</strong>.</p>
+<blockquote>
+<div><p><strong>Datum</strong> = Modelo matemático que representa la forma y tamaño de la Tierra.</p>
+</div></blockquote>
+<section id="ejemplos-de-datum">
+<h4>🔸 Ejemplos de datum:<a class="headerlink" href="#ejemplos-de-datum" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Cómo se representa la <em>forma</em> de la Tierra (a través de un datum, como WGS84)</p></li>
-<li><p>Y opcionalmente, cómo se <em>proyectan esas coordenadas</em> sobre un plano bidimensional (si es proyectado)</p></li>
+<li><p><strong>WGS84</strong>: el más común, usado por el GPS.</p></li>
+<li><p><strong>ITRF2008</strong>: muy preciso, usado en geodesia y estudios de movimiento tectónico.</p></li>
 </ul>
-<p>Una <strong>proyección de mapa</strong> es el proceso mediante el cual las coordenadas esféricas de latitud y longitud se transforman en coordenadas planas (x, y), utilizando unidades como <code class="docutils literal notranslate"><span class="pre">metros</span></code> o <code class="docutils literal notranslate"><span class="pre">grados</span></code>, dependiendo del tipo de CRS.</p>
-<p>Los CRS se dividen en dos grupos principales:</p>
+</section>
+</section>
+<section id="que-es-una-proyeccion">
+<h3>¿Qué es una proyección?<a class="headerlink" href="#que-es-una-proyeccion" title="Link to this heading">#</a></h3>
+<p>Una <strong>proyección cartográfica</strong> convierte coordenadas sobre la superficie curva de la Tierra a un plano.</p>
+<p>Cada proyección prioriza diferentes aspectos: <em>área, forma, distancia o dirección.</em></p>
+<section id="ejemplos-de-proyeccion">
+<h4>🔸 Ejemplos de proyección:<a class="headerlink" href="#ejemplos-de-proyeccion" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p><strong>CRS geográficos</strong>: trabajan directamente con <em>latitud y longitud</em> en unidades de <strong>grados</strong> (por ejemplo, <a class="reference external" href="https://epsg.io/4326">WGS84</a>)</p></li>
-<li><p><strong>CRS proyectados</strong>: representan la Tierra sobre un plano usando unidades de distancia real (como <strong>metros</strong>) y aplican una proyección cartográfica (por ejemplo, <a class="reference external" href="https://epsg.io/32614">UTM Zona 14N</a>, <a class="reference external" href="https://epsg.io/6368">ITRF2008 / UTM zone 13N</a>)</p></li>
+<li><p><strong>Mercator</strong>: conserva formas, pero exagera tamaños cerca de los polos.</p></li>
+<li><p><strong>UTM</strong>: divide el mundo en zonas para minimizar distorsión regional.</p></li>
 </ul>
-<p>En México, uno de los sistemas más comunes para trabajos cartográficos es el sistema <strong>UTM</strong>, dividido en zonas como la 13N y 14N, basadas en el datum <code class="docutils literal notranslate"><span class="pre">WGS84</span></code>. Para aplicaciones geodésicas de alta precisión, también puede usarse el sistema <code class="docutils literal notranslate"><span class="pre">ITRF</span></code> (por ejemplo, ITRF2008).</p>
-<p>La forma más sencilla y común de especificar un CRS es a través del código <strong>EPSG</strong>, que es un identificador estándar. A continuación se presentan algunos CRS relevantes para México:</p>
+</section>
+</section>
+<section id="que-es-utm">
+<h3>¿Qué es UTM?<a class="headerlink" href="#que-es-utm" title="Link to this heading">#</a></h3>
+<p><strong>UTM (Universal Transverse Mercator)</strong> es un sistema de proyección que divide la Tierra en zonas numeradas.</p>
+<blockquote>
+<div><p>📌 <em>Piensa en columnas verticales sobre el globo. Cada una tiene su propio sistema de coordenadas en metros.</em></p>
+</div></blockquote>
+<ul class="simple">
+<li><p>México usa comúnmente las zonas <strong>13N y 14N</strong>.</p></li>
+<li><p>Las coordenadas están en <strong>metros</strong>, no en grados.</p></li>
+</ul>
+</section>
+<section id="que-es-un-codigo-epsg">
+<h3>¿Qué es un código EPSG?<a class="headerlink" href="#que-es-un-codigo-epsg" title="Link to this heading">#</a></h3>
+<p><strong>EPSG</strong> es un código numérico estandarizado que identifica un sistema de coordenadas completo: <em>datum + proyección + unidad + zona.</em></p>
+<blockquote>
+<div><p>📌 <em>Como si cada mapa tuviera un número de serie o “ID”.</em></p>
+</div></blockquote>
 <p><strong>Tabla: Sistemas de Coordenadas de Referencia (CRS) comunes en México</strong></p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -458,6 +499,17 @@ document.write(`
 </table>
 </div>
 <p>Los <strong>CRS geográficos</strong> abarcan toda la superficie terrestre y utilizan coordenadas angulares (grados), mientras que los <strong>CRS proyectados</strong> representan áreas más pequeñas con coordenadas en unidades lineales (metros), lo que permite realizar cálculos geométricos como distancias y áreas.</p>
+</section>
+<section id="que-es-el-itrf">
+<h3>¿Qué es el ITRF?<a class="headerlink" href="#que-es-el-itrf" title="Link to this heading">#</a></h3>
+<p><strong>ITRF</strong> (International Terrestrial Reference Frame) es un marco de referencia muy preciso usado en geodesia.</p>
+<blockquote>
+<div><p>🛰 Incluye modelos de movimiento de placas tectónicas, por eso también considera el <strong>tiempo</strong>.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><strong>ITRF2008</strong> o <strong>ITRF2014</strong> se usan cuando se necesita gran exactitud espacial y temporal.</p></li>
+</ul>
+</section>
 <section id="ejemplo-reales-de-crs-en-herramientas-geoespaciales">
 <h3>Ejemplo reales de CRS en herramientas geoespaciales<a class="headerlink" href="#ejemplo-reales-de-crs-en-herramientas-geoespaciales" title="Link to this heading">#</a></h3>
 <p>Los Sistemas de Coordenadas de Referencia (<em>CRS</em>) no son solo una teoría: están en plataformas que usamos todos los días, desde tu GPS hasta Google Maps. Aquí te mostramos cómo se aplican en la práctica:</p>
@@ -601,6 +653,17 @@ Un punto como <code class="docutils literal notranslate"><span class="pre">20.62
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sistema-de-coordenadas-de-referencia-crs">Sistema de Coordenadas de Referencia (CRS)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#como-representamos-la-tierra">¿Cómo representamos la Tierra?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-datum">🔸 Ejemplos de datum:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-una-proyeccion">¿Qué es una proyección?</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplos-de-proyeccion">🔸 Ejemplos de proyección:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-utm">¿Qué es UTM?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-un-codigo-epsg">¿Qué es un código EPSG?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#que-es-el-itrf">¿Qué es el ITRF?</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-reales-de-crs-en-herramientas-geoespaciales">Ejemplo reales de CRS en herramientas geoespaciales</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#gps">🛰️ GPS</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#google-maps">Google Maps</a></li>
