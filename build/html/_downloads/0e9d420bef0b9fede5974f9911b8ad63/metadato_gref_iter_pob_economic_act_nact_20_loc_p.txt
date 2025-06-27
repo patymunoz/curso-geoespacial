@@ -1,0 +1,173 @@
+Metadato estructurado conforme a la Norma Técnica Mexicana para la Elaboración de Metadatos Geográficos 
+
+
+* SECCIÓN 1. Identificación del conjunto de datos espaciales o producto 
+
+- Ecosistema Nacional Informático (ENI): No aplica.
+- Capítulo ENI: No aplica.
+- Subcapítulo ENI: No aplica.
+- Título del conjunto de datos espaciales o producto: Población económicamente activa y no activa, por sexo y localidad 2020.
+- Nombre de archivo: gref_iter_pob_economic_act_nact_20_loc_p
+- Propósito: Poner de manifiesto la población de 12 años y más económicamente activa y no activa, por sexo a nivel localidad.
+- Descripción del conjunto de datos espaciales o producto: El archivo contiene la población de 12 años y más económicamente activa y no activa por sexo, así como la población total, por localidad. Datos de origen del Instituto Nacional de Estadística y Geografía (INEGI), 2020.
+- Idioma del conjunto de datos espaciales o producto: Español.
+- Tema principal del conjunto de datos espaciales o producto: Economía.
+- Grupo de datos del conjunto de datos espaciales o producto: Grupo de datos de nombres geográficos.
+- Palabras clave: población económicamente activa, población no económicamente activa, economía, empleos, trabajo, localidad, ITER, Instituto Nacional de Estadística y Geografía, INEGI.
+- Forma de presentación de los datos espaciales: Mapa digital.
+- URL del recurso: https://gema.conahcyt.mx/
+- Frecuencia de mantenimiento y actualización: No programado.
+- Uso específico: Visualizar la población de 12 años y más económicamente activa y no activa, por sexo a nivel localidad.
+- Codificación: UTF-8.
+- Estructura de datos: Vectorial.
+- Tipo de geometría: Puntos.
+- Tamaño de archivo: 45.73 Mb.
+- Formato: gpkg y geojson (complementario csv y xlsx).
+
+
+* SECCIÓN 2. Fechas relacionadas con el conjunto de datos espaciales o productos 
+
+- Fecha de referencia del conjunto de datos espaciales o producto: 2022.
+- Tipo de fecha: Creación - indicador de la fecha que especifica cuándo fue creado el recurso.
+- Fecha de creación de los insumos: 2020.
+- Nombre del insumo: Principales resultados por localidad 2020. Censo de Población y Vivienda 2020. 
+
+
+* SECCIÓN 3. Unidad del estado responsable del conjunto de datos espaciales o productos 
+
+- Nombre de la organización: Consejo Nacional de Humanidades, Ciencias y Tecnologías (Conahcyt).
+- Enlace en línea: https://conahcyt.mx/
+
+
+* SECCIÓN 4. Localización geográfica del conjunto de datos espaciales o productos 
+
+- Coordenadas máximas y mínimas: (-118.302243055556, -86.7460916666667, 14.5354647222222, 32.7161883333333).
+
+
+* SECCIÓN 5. Sistema de referencia 
+
+- Unidades de coordenadas: Grados decimales.
+- Sistema de referencia de coordenadas: EPSG:4326.
+
+
+* SECCIÓN 6. Calidad de la información (linaje) 
+
+- Linaje: Se descargaron las tablas de datos por entidad federativa del Sistema de Consulta de Integración Territorial, Entorno Urbano y Localidad (SCITEL) del INEGI. La información se estructuró para poder ser presentada en una capa geográfica en formato geopaquete.
+- Pasos del proceso: (A) En el SCITEL se seleccionaron las variables de interés y se descargaron las 32 tablas de datos. Estas se unieron para conjuntar las tablas en una. (B) Se eliminaron las filas del total nacional, totales municipales y totales agrupados de localidades de una y dos viviendas. (C) Se ajustó el formato de las coordenadas sexagesimales de ubicación de la localidad conforme al formato requerido en QGIS (por ejemplo, 31°18'24.08'' N se cambió por 31/18/24.08N) para desplegar la geometría correspondiente. (D) Los atributos con valores de "*", "N/D" y "N/A" se cambiaron por "-999" para definir el tipo de dato de los indicadores como entero o decimal y con fines de visualización. (E) Se crearon las columnas 'cvegeomun' y 'cvegeoloc' concatenando las claves únicas. (F) Se creó la columna 'g_id' y se escribieron los nombres de las columnas en minúsculas. Se cambió la codificación a UTF-8. (G) La tabla se guardó en formato csv. (H) La tabla modificada se abrió en QGIS y se transformó en capa geográfica. (I) Se calcularon las coordenadas de los puntos en formato de grados decimales. (J) Los valores nulos se sustituyeron con "-999" con fines de visualización. 
+- Fuente: INEGI-SCITEL, Principales resultados por localidad 2020 - https://www.inegi.org.mx/app/scitel/Default?ev=9 
+
+
+* SECCIÓN 7. Entidades y atributos 
+
+- Detalle de entidades y atributos: El conjunto de datos cuenta con 22 campos y 189,432 objetos geográficos.
+
+
+* SECCIÓN 8. Distribución 
+
+- Tipo de licenciamiento: Bajo los términos de libre uso MX de los Datos Abiertos del gobierno de México, ver https://datos.gob.mx/libreusomx
+
+
+* SECCIÓN 9. Información del contacto para los metadatos 
+
+- Nombre de la organización: Consejo Nacional de Humanidades, Ciencias y Tecnologías
+			     Coordinación de Repositorios, Investigación y Prospectiva
+- Correo electrónico de contacto: dadsig@conahcyt.mx
+
+- Fecha de los metadatos: 31-01-2023.
+
+
+################################################################ 
+
+Notas u observaciones: La población económicamente activa incluye a las personas que trabajaron, tenían trabajo pero no trabajaron o buscaron trabajo en la semana de referencia. La población no económicamente activa incluye a las personas pensionadas o jubiladas, estudiantes, aquellas dedicadas a los quehaceres del hogar, personas incapacitadas permanentemente para trabajar o quienes no trabajan.
+		       Se eliminaron de la tabla fuente los totales nacionales y municipales, así como los totales agrupados de localidades de una y dos viviendas.
+		       Debido al principio de confidencialidad que marca la Ley del Sistema Nacional de Información Estadística y Geográfica (LSNIEG), no es posible generar información para unidades geográficas que tienen menos de tres viviendas, por lo que para las localidades de una y dos viviendas sólo se presenta información en las variables Población total (POBTOT), Viviendas totales (VIVTOT) y Total de viviendas habitadas (TVIVHAB); en el resto de los indicadores aparecen con asterisco.
+		       En la tabla de la fuente de los datos algunos valores aparecen con asteriscos (datos reservados por confidencialidad) o con valores "N/D" (no disponible) o "N/A" (no aplica); estos tres valores se reemplazaron por "-999" para el manejo de datos numéricos en los indicadores. Para descargar la tabla original de datos, consultar: https://www.inegi.org.mx/app/scitel/Default?ev=9
+		       El dato de coordenadas ('latitud' y 'longitud') tomado de la fuente de datos se generó a partir del archivo vectorial del Marco Geoestadístico, donde el insumo para su conformación fueron las imágenes de satélite Spot pancromáticas con una resolución espacial de 2.5 metros, con fecha de toma de 2020.
+	               Las coordenadas 'x_long' y 'y_lat' se obtuvieron mediante la función de "$x" y "$y" del software QGIS 3.22.11. Dicho cálculo fue con base en el EPSG:4326.
+		       Los descriptores de las variables se tomaron del documento de descriptor de datos del ITER (https://www.inegi.org.mx/app/scitel/doc/descriptor/fd_iter_cpv2020.pdf).
+
+################################################################ 
+
+--------------------------------------------
+DICCIONARIO DE CAMPOS O VARIABLES
+
+campo: 'g_id'
+descripción: Identificador único consecutivo
+
+campo: 'cve_ent'
+descripción: Clave INEGI de la entidad federativa
+
+campo: 'nom_ent'
+descripción: Nombre de la entidad federativa
+
+campo: 'cve_mun'
+descripción: Clave INEGI del municipio
+
+campo: 'cvegeomun'
+descripción: Clave INEGI concatenada de la entidad federativa y el municipio
+
+campo: 'nom_mun'
+descripción: Nombre del municipio
+
+campo: 'cve_loc'
+descripción: Clave INEGI de la localidad
+
+campo: 'cvegeoloc'
+descripción: Clave INEGI concatenada de la entidad federativa, municipio y localidad
+
+campo: 'nom_loc'
+descripción: Nombre de la localidad
+
+campo: 'tamloc'
+descripción: Tamaño de localidad con base en el total de personas que residen habitualmente en ella. Las localidades se clasifican en 14 clases:
+	01 = 1 a 249 habitantes
+	02 = 250 a 499 habitantes
+	03 = 500 a 999 habitantes
+	04 = 1,000 a 2,499 habitantes
+	05 = 2,500 a 4,999 habitantes
+	06 = 5,000 a 9,999 habitantes
+	07 = 10,000 a 14,999 habitantes
+	08 = 15,000 a 29,999 habitantes
+	09 = 30,000 a 49,999 habitantes
+	10 = 50,000 a 99,999 habitantes
+	11 = 100,000 a 249,999 habitantes
+	12 = 250,000 a 499,999 habitantes
+	13 = 500,000 a 999,999 habitantes
+	14 = 1,000,000 y más habitantes
+
+campo: 'pobtot'
+descripción: Total de personas que residen habitualmente en la localidad. Incluye la estimación del número de personas en viviendas particulares sin información de ocupantes, así como a la población que no especificó su edad
+
+campo: 'pea'
+descripción: Población de 12 años y más económicamente activa. Personas de 12 a 130 años de edad que trabajaron, tenían trabajo pero no trabajaron o buscaron trabajo en la semana de referencia
+
+campo: 'pea_f'
+descripción: Población femenina de 12 años y más económicamente activa. Mujeres de 12 a 130 años de edad que trabajaron, tenían trabajo pero no trabajaron o buscaron trabajo en la semana de referencia 
+
+campo: 'pea_m'
+descripción: Población masculina de 12 años y más económicamente activa. Hombres de 12 a 130 años de edad que trabajaron, tenían trabajo pero no trabajaron o buscaron trabajo en la semana de referencia
+
+campo: 'pe_inac'
+descripción: Población de 12 años y más no económicamente activa. Personas de 12 a 130 años de edad pensionadas o jubiladas; estudiantes; dedicadas a los quehaceres del hogar; están incapacitadas permanentemente para trabajar; o no trabajan
+
+campo: 'pe_inac_f'
+descripción: Población femenina de 12 años y más no económicamente activa. Mujeres de 12 a 130 años de edad pensionadas o jubiladas; estudiantes; dedicadas a los quehaceres del hogar; están incapacitadas permanentemente para trabajar; o no trabajan
+
+campo: 'pe_inac_m'
+descripción: Población masculina de 12 años y más no económicamente activa. Hombres de 12 a 130 años de edad pensionados o jubilados; estudiantes; dedicados a los quehaceres del hogar; están incapacitados permanentemente para trabajar; o no trabajan
+
+campo: 'altitud'
+descripción: Altura a la que se encuentra una localidad, respecto al nivel medio del mar, expresada en metros
+
+campo: 'longitud'
+descripción: Coordenada de longitud de la ubicación de la localidad en formato sexagesimal
+
+campo: 'latitud'
+descripción: Coordenada de latitud de la ubicación de la localidad en formato sexagesimal
+
+campo: 'x_long'
+descripción: Coordenada de longitud en formato decimal
+
+campo: 'y_lat'
+descripción: Coordenada de latitud en formato decimal
+

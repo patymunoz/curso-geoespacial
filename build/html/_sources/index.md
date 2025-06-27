@@ -34,6 +34,7 @@ metas-aprendizaje
 modulo1
 modulo2
 modulo3
+checkpoint
 modulo4
 modulo5
 modulo6
