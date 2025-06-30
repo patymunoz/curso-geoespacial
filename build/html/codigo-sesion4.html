@@ -173,6 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="modulo1.html">🔹 Sesión 1</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo2.html">🔹 Sesión 2</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo3.html">🔹 Sesión 3</a></li>
+<li class="toctree-l1"><a class="reference internal" href="checkpoint.html">🔹 Sesión de práctica</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo4.html">🔹 Sesión 4</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo5.html">🔹 Sesión 5</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modulo6.html">🔹 Sesión 6</a></li>
@@ -365,14 +366,9 @@ document.write(`
 
 <span class="n">m</span> <span class="o">=</span> <span class="n">am</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Municipios&quot;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="s2">&quot;NOMGEO&quot;</span><span class="p">)</span>
 
-<span class="c1"># puntos originales</span>
-<span class="n">geoc</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">marker_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Todos&quot;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
-<span class="c1"># + intersección</span>
-<span class="n">interseccion</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">marker_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Intersects&quot;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-
 <span class="c1"># + within</span>
-<span class="n">contenidos</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">marker_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Within&quot;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">contenidos</span><span class="o">.</span><span class="n">explore</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="n">m</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">marker_kwds</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;radius&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Within&quot;</span><span class="p">,</span> <span class="n">tooltip</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">madius</span><span class="s1">&#39;: 5}, name=&quot;Within&quot;, tooltip=True)</span>
 <span class="n">m</span>
 </pre></div>
 </div>

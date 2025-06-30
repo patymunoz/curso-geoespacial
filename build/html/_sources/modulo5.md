@@ -1,10 +1,5 @@
 # 🔹 Sesión 5
 
-```{admonition} Antes de iniciar...
-
-[Click aquí](https://docs.google.com/forms/d/e/1FAIpQLScycxos-GgWz2YWV18ciHjgLhNek5Fg-pA0dU957h0SRZFsDg/viewform?usp=dialog)
-```
-
 En esta sesión exploraremos el concepto de **reclasificación de datos**. Para esto, utilizaremos datos de uso del suelo y vegetación, así como imágenes satelitales.
 
 ## Reclasificación de datos

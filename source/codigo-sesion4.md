@@ -5,14 +5,9 @@
 
 m = am.explore(color="gray", edgecolor="black", name="Municipios", tooltip="NOMGEO")
 
-# puntos originales
-geoc.explore(m=m, color="blue", marker_kwds={'radius': 5}, name="Todos", tooltip=True)
-
-# + intersección
-interseccion.explore(m=m, color="green", marker_kwds={'radius': 5}, name="Intersects", tooltip=True)
-
 # + within
-contenidos.explore(m=m, color="red", marker_kwds={'radius': 5}, name="Within", tooltip=True)
+contenidos.explore(m=m, color="green", marker_kwds={'radius': 5}, name="Within", tooltip=True)
+madius': 5}, name="Within", tooltip=True)
 m
 ```
 
