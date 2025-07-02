@@ -43,6 +43,8 @@ modulo8
 modulo9
 modulo10
 
+evaluacion-curso
+
 ```
 
 ## 🌐 Metodología
